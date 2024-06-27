@@ -1,30 +1,79 @@
-# React + TypeScript + Vite
+# Elden Router
+A routing tool for Elden Ring.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## What is this?
+Elden Ring is an open-world video game created by FromSoftware. This tool finds the shortest path to a particular item. The user can customize whether they want to have to beat a boss to get it, or whether they want to use glitches. Elden Ring is a pretty large game, and there are many ways to get to different regions especially if you factor in glitches. That's where this tool comes in.
 
-Currently, two official plugins are available:
+## How does it work?
+This tool uses graph theory. Locations in the world are nodes, and I use edges customized with certain attributes to connect them. Edge have attributes such as `boss_required`, `glitch_required`, or `items_required`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First, the tool filters out all edges that don't conform to the user's selection. If the user disallows glitches, the tool filters all edges that require a glitch. Then, the tool runs the dijkstra graph algorithm to find the shortest path.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Example Output
+```typescript
+// item, allowBosses, allowGlitches, itemsAcquired
+getPathToItem(items.RIVERS_OF_BLOOD, false, true, [
+    "DECTUS_MEDALLION_1",
+    "DECTUS_MEDALLION_2",
+])
+```
+```json
+[
+    {
+        "from": "Limgrave",
+        "to": "Liurnia",
+        "metadata": [
+            {}
+        ]
+    },
+    {
+        "from": "Liurnia",
+        "to": "Altus Plateau",
+        "metadata": [
+            {
+                "items_required": [
+                    "DECTUS_MEDALLION_1",
+                    "DECTUS_MEDALLION_2"
+                ]
+            }
+        ]
+    },
+    {
+        "from": "Altus Plateau",
+        "to": "Leyndell Outskirts",
+        "metadata": [
+            {}
+        ]
+    },
+    {
+        "from": "Leyndell Outskirts",
+        "to": "Consecrated Snowfield",
+        "metadata": [
+            {
+                "glitch_required": "Zip Glitch"
+            }
+        ]
+    },
+    {
+        "from": "Consecrated Snowfield",
+        "to": "Hidden Path to the Haligtree",
+        "metadata": [
+            {},
+            {}
+        ]
+    },
+    {
+        "from": "Hidden Path to the Haligtree",
+        "to": "Mountaintops of the Giants",
+        "metadata": [
+            {
+                "glitch_required": "Wrong Warp"
+            }
+        ]
+    }
+]
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Future Enhancements
+A UI is coming soon.
+![img.png](public/readme-tool-mockup.png)
