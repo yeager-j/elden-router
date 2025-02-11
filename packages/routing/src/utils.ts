@@ -1,18 +1,16 @@
-import Graph from "graphology";
+import { MultiDirectedGraph } from "graphology";
 
+import { EnemyData } from "@workspace/data/enemies";
+import { Flag, FlagData } from "@workspace/data/flags";
+import { GlitchNames } from "@workspace/data/glitches";
+import { ProgressionItem, ProgressionItemData } from "@workspace/data/items";
 import {
-  EnemyData,
-  Flag,
-  FlagData,
-  GlitchNames,
-  ProgressionItem,
-  ProgressionItemData,
   QuestlineData,
   QuestlineStage,
   QuestlineStageData,
-} from "@workspace/data";
+} from "@workspace/data/quests";
 
-import { EdgeMetadata, PathSettings, Requirement } from "@/types";
+import { EdgeMetadata, PathSettings, Requirement } from "#types";
 
 export function hasBossRequirement(metadata: EdgeMetadata) {
   return metadata.requirements.some((req) => req.type === "boss");
@@ -165,7 +163,7 @@ export function getEdgeCost(attributes: EdgeMetadata): number {
 }
 
 export function getBestEdge(
-  graph: Graph<object, EdgeMetadata>,
+  graph: MultiDirectedGraph<object, EdgeMetadata>,
   edgeKeys: string[],
 ) {
   const edgesWithAttributes = edgeKeys.map((key) => ({

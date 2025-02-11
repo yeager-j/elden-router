@@ -1,12 +1,9 @@
-import {
-  Enemy,
-  Flag,
-  Glitch,
-  Item,
-  Location,
-  ProgressionItem,
-  QuestlineStage,
-} from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Flag } from "@workspace/data/flags";
+import { Glitch } from "@workspace/data/glitches";
+import { Item, ProgressionItem } from "@workspace/data/items";
+import { Location } from "@workspace/data/locations";
+import { QuestlineStage } from "@workspace/data/quests";
 
 export interface GetPathResult {
   pathSteps: PathStep[] | null;

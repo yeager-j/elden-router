@@ -1,14 +1,12 @@
 import { describe, expect, test } from "vitest";
 
-import {
-  Enemy,
-  Flag,
-  Glitch,
-  ProgressionItem,
-  QuestlineStage,
-} from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Flag } from "@workspace/data/flags";
+import { Glitch } from "@workspace/data/glitches";
+import { ProgressionItem } from "@workspace/data/items";
+import { QuestlineStage } from "@workspace/data/quests";
 
-import { EdgeMetadata } from "@/types";
+import { EdgeMetadata } from "#types";
 import {
   getIncompleteQuestlineStage,
   getMissingFlags,
@@ -17,12 +15,12 @@ import {
   hasGlitchRequirement,
   hasItemRequirement,
   hasQuestRequirement,
-} from "@/utils";
+} from "#utils";
 
 describe("requirement utils", () => {
   test("hasBossRequirement: returns true when there is a boss requirement", () => {
     const attributes: EdgeMetadata = {
-      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL }],
+      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN }],
     };
 
     expect(hasBossRequirement(attributes)).toBe(true);
@@ -57,7 +55,7 @@ describe("requirement utils", () => {
   test("hasGlitchRequirement: returns false when there is no glitch requirement", () => {
     const attributes: EdgeMetadata = {
       requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL },
+        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
         { type: "quest", stage: QuestlineStage.RANNI_STAGE_1 },
         { type: "item", value: ProgressionItem.ROLD_MEDALLION },
       ],
@@ -77,7 +75,7 @@ describe("requirement utils", () => {
   test("hasItemRequirement: returns false when there is no item requirement", () => {
     const attributes: EdgeMetadata = {
       requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL },
+        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
         { type: "quest", stage: QuestlineStage.RANNI_STAGE_1 },
         { type: "glitch", value: Glitch.WRONGWARP, description: "" },
       ],
@@ -97,7 +95,7 @@ describe("requirement utils", () => {
   test("hasQuestRequirement: returns false when there is no quest requirement", () => {
     const attributes: EdgeMetadata = {
       requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL },
+        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
         { type: "item", value: ProgressionItem.ROLD_MEDALLION },
         { type: "glitch", value: Glitch.WRONGWARP, description: "" },
       ],
@@ -153,7 +151,7 @@ describe("requirement utils", () => {
   test("hasFlagRequirement: returns false when there is no flag requirement", () => {
     const attributes: EdgeMetadata = {
       requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL },
+        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
         { type: "item", value: ProgressionItem.ROLD_MEDALLION },
         { type: "glitch", value: Glitch.WRONGWARP, description: "" },
       ],

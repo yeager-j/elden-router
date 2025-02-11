@@ -7,7 +7,21 @@
     "build": "tsc"
   },
   "exports": {
-    ".": "./src/index.ts"
+    "./enemies": "./src/enemies.ts",
+    "./flags": "./src/flags.ts",
+    "./glitches": "./src/glitches.ts",
+    "./items": "./src/items.ts",
+    "./locations": "./src/locations.ts",
+    "./quests": "./src/quests.ts"
+  },
+  "imports": {
+    "#*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts",
+      "./src/*/index.tsx"
+    ]
   },
   "prettier": "@workspace/prettier-config",
   "devDependencies": {

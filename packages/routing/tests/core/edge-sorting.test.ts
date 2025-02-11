@@ -1,22 +1,20 @@
-import Graph from "graphology";
+import { MultiDirectedGraph } from "graphology";
 import { describe, expect, test } from "vitest";
 
-import {
-  Enemy,
-  Flag,
-  Glitch,
-  ProgressionItem,
-  QuestlineStage,
-} from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Flag } from "@workspace/data/flags";
+import { Glitch } from "@workspace/data/glitches";
+import { ProgressionItem } from "@workspace/data/items";
+import { QuestlineStage } from "@workspace/data/quests";
 
-import { EdgeMetadata } from "@/types";
-import { getBestEdge, getEdgeCost } from "@/utils";
+import { EdgeMetadata } from "#types";
+import { getBestEdge, getEdgeCost } from "#utils";
 
 describe("edge sort logic", () => {
   test("getEdgeCost: calculates correct cost for various edge requirements", () => {
     const edge1Metadata: EdgeMetadata = {
       requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL },
+        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
         { type: "item", value: ProgressionItem.DECTUS_MEDALLION },
       ],
     };
@@ -38,7 +36,7 @@ describe("edge sort logic", () => {
   });
 
   test("getBestEdge: prefers glitches over bosses", () => {
-    const graph = new Graph<object, EdgeMetadata>({ multi: true });
+    const graph = new MultiDirectedGraph<object, EdgeMetadata>();
 
     const nodeA = "A";
     const nodeB = "B";
@@ -47,7 +45,7 @@ describe("edge sort logic", () => {
     graph.addNode(nodeB);
 
     const edge1Metadata: EdgeMetadata = {
-      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL }],
+      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN }],
     };
 
     const edge2Metadata: EdgeMetadata = {
@@ -64,7 +62,7 @@ describe("edge sort logic", () => {
   });
 
   test("getBestEdge: prefers items over flags", () => {
-    const graph = new Graph<object, EdgeMetadata>({ multi: true });
+    const graph = new MultiDirectedGraph<object, EdgeMetadata>();
 
     const nodeA = "A";
     const nodeB = "B";
@@ -90,7 +88,7 @@ describe("edge sort logic", () => {
   });
 
   test("getBestEdge: prefers glitches and items over quests", () => {
-    const graph = new Graph<object, EdgeMetadata>({ multi: true });
+    const graph = new MultiDirectedGraph<object, EdgeMetadata>();
 
     const nodeA = "A";
     const nodeB = "B";

@@ -1,6 +1,7 @@
-import { Item, Location } from "@workspace/data";
+import { Item } from "@workspace/data/items";
+import { Location } from "@workspace/data/locations";
 
-import { EdgeData } from "@/types";
+import { EdgeData } from "#types";
 
 export const sorceryLocations: EdgeData[] = [
   {

@@ -8,7 +8,22 @@
     "test": "vitest"
   },
   "exports": {
-    ".": "./src/index.ts"
+    "./*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts",
+      "./src/*/index.tsx"
+    ]
+  },
+  "imports": {
+    "#*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts",
+      "./src/*/index.tsx"
+    ]
   },
   "prettier": "@workspace/prettier-config",
   "devDependencies": {

@@ -1,12 +1,10 @@
-import {
-  Enemy,
-  Flag,
-  Glitch,
-  Location,
-  ProgressionItem,
-} from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Flag } from "@workspace/data/flags";
+import { Glitch } from "@workspace/data/glitches";
+import { ProgressionItem } from "@workspace/data/items";
+import { Location } from "@workspace/data/locations";
 
-import { EdgeData } from "@/types";
+import { EdgeData } from "#types";
 
 export const altusPlateauEdges: EdgeData[] = [
   // Main Altus Plateau access points

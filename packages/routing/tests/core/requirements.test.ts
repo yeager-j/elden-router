@@ -1,21 +1,17 @@
 import { describe, expect, test } from "vitest";
 
+import { Enemy, EnemyData } from "@workspace/data/enemies";
+import { Flag, FlagData } from "@workspace/data/flags";
+import { Glitch, GlitchNames } from "@workspace/data/glitches";
+import { ProgressionItem, ProgressionItemData } from "@workspace/data/items";
 import {
-  Enemy,
-  EnemyData,
-  Flag,
-  FlagData,
-  Glitch,
-  GlitchNames,
-  ProgressionItem,
-  ProgressionItemData,
   QuestlineData,
   QuestlineStage,
   QuestlineStageData,
-} from "@workspace/data";
+} from "@workspace/data/quests";
 
-import { EdgeMetadata, PathSettings } from "@/types";
-import { checkEdgeMeetsSettings } from "@/utils";
+import { EdgeMetadata, PathSettings } from "#types";
+import { checkEdgeMeetsSettings } from "#utils";
 
 describe("checkEdgeMeetsSettings", () => {
   const mockSettings: PathSettings = {
@@ -35,7 +31,7 @@ describe("checkEdgeMeetsSettings", () => {
 
   test("returns invalid for a boss requirement when bosses are disallowed", () => {
     const edge: EdgeMetadata = {
-      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL }], // Mock enemy ID
+      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN }], // Mock enemy ID
     };
 
     const result = checkEdgeMeetsSettings(
@@ -45,7 +41,7 @@ describe("checkEdgeMeetsSettings", () => {
 
     expect(result).toEqual({
       valid: false,
-      reason: `Killing ${EnemyData.MARGIT_THE_FELL.displayName} is required, but you disallowed fighting bosses.`,
+      reason: `Killing ${EnemyData.MARGIT_THE_FELL_OMEN.displayName} is required, but you disallowed fighting bosses.`,
     });
   });
 
@@ -119,7 +115,7 @@ describe("checkEdgeMeetsSettings", () => {
   test("returns valid when all requirements are met", () => {
     const edge: EdgeMetadata = {
       requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL },
+        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
         { type: "item", value: ProgressionItem.DECTUS_MEDALLION },
         { type: "flag", value: Flag.RADAHN_FESTIVAL_ENABLED },
       ],

@@ -1,14 +1,16 @@
-import Graph from "graphology";
+import { MultiDirectedGraph } from "graphology";
 import { dijkstra } from "graphology-shortest-path";
 
-import { Item, Location } from "@workspace/data";
+import { Item } from "@workspace/data/items";
+import { Location } from "@workspace/data/locations";
 
-import { allEdges } from "@/edges";
-import { EdgeMetadata, GetPathResult, PathSettings, PathStep } from "@/types";
-import { checkEdgeMeetsSettings, getBestEdge } from "@/utils";
+import { allEdges } from "#edges";
+import { EdgeMetadata, GetPathResult, PathSettings, PathStep } from "#types";
+import { checkEdgeMeetsSettings, getBestEdge } from "#utils";
 
-export function buildGraph(): Graph<object, EdgeMetadata> {
-  const graph: Graph<object, EdgeMetadata> = new Graph({ multi: true });
+export function buildGraph(): MultiDirectedGraph<object, EdgeMetadata> {
+  const graph: MultiDirectedGraph<object, EdgeMetadata> =
+    new MultiDirectedGraph();
 
   const nodes = new Set<string>();
   allEdges.forEach((edge) => {

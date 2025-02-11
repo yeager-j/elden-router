@@ -1,12 +1,9 @@
 {
   "extends": "@workspace/typescript-config/react-library.json",
   "compilerOptions": {
-    //"outDir": "dist"
-    "moduleResolution": "Bundler",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["."],
   "exclude": ["node_modules", "dist"]

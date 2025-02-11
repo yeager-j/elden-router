@@ -1,5 +1,5 @@
-import { Location } from "@/locations";
-import { Questline } from "@/quests";
+import { Location } from "#locations";
+import { Questline } from "#quests";
 
 export enum ProgressionItem {
   DECTUS_MEDALLION = "DECTUS_MEDALLION",

@@ -1,6 +1,7 @@
-import { Enemy, Location } from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Location } from "@workspace/data/locations";
 
-import { EdgeData } from "@/types";
+import { EdgeData } from "#types";
 
 export const deeprootEdges: EdgeData[] = [
   // Access points to Deeproot Depths

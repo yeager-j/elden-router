@@ -1,6 +1,8 @@
-import { Enemy, Glitch, Location } from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Glitch } from "@workspace/data/glitches";
+import { Location } from "@workspace/data/locations";
 
-import { EdgeData } from "@/types";
+import { EdgeData } from "#types";
 
 export const ainselRiverEdges: EdgeData[] = [
   // Ainsel Well path

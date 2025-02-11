@@ -1,6 +1,9 @@
-import { Enemy, Flag, Location, ProgressionItem } from "@workspace/data";
+import { Enemy } from "@workspace/data/enemies";
+import { Flag } from "@workspace/data/flags";
+import { ProgressionItem } from "@workspace/data/items";
+import { Location } from "@workspace/data/locations";
 
-import { EdgeData } from "@/types";
+import { EdgeData } from "#types";
 
 export const siofraRiverEdges: EdgeData[] = [
   // Main entry points to underground
