@@ -1,0 +1,76 @@
+import {
+  Enemy,
+  Flag,
+  Glitch,
+  Item,
+  Location,
+  ProgressionItem,
+  QuestlineStage,
+} from "@workspace/data";
+
+export interface GetPathResult {
+  pathSteps: PathStep[] | null;
+
+  isError: boolean;
+  reasons: string[];
+}
+
+export interface PathStep {
+  from: Location;
+  to: Location | Item;
+  metadata: EdgeMetadata;
+}
+
+export interface PathSettings {
+  allowBosses: boolean;
+  allowGlitches: boolean;
+  acquiredItems: Set<ProgressionItem>;
+  completedQuestlineStages: Set<QuestlineStage>;
+  flagsEnabled: Set<Flag>;
+}
+
+export type BossRequirement = {
+  type: "boss";
+  value: Enemy;
+};
+
+export type GlitchRequirement = {
+  type: "glitch";
+  value: Glitch;
+  description: string;
+};
+
+export type ItemRequirement = {
+  type: "item";
+  value: ProgressionItem;
+};
+
+export type QuestRequirement = {
+  type: "quest";
+  stage: QuestlineStage;
+};
+
+export type FlagRequirement = {
+  type: "flag";
+  value: Flag;
+  not?: boolean;
+};
+
+export type Requirement =
+  | BossRequirement
+  | GlitchRequirement
+  | ItemRequirement
+  | QuestRequirement
+  | FlagRequirement;
+
+export interface EdgeMetadata {
+  description?: string;
+  requirements: Requirement[];
+}
+
+export interface EdgeData {
+  from: Location;
+  to: Location | Item;
+  directed?: boolean;
+  metadata: EdgeMetadata;
+}

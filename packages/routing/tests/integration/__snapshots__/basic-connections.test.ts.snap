@@ -1,0 +1,90 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`basic connections > Limgrave -> Caelid 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "CAELID",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`basic connections > Limgrave -> Divine Tower of Caelid 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "CAELID",
+    },
+    {
+      "from": "CAELID",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "DRAGONBARROW",
+    },
+    {
+      "from": "DRAGONBARROW",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "DRAGONBARROW_DIVINE_TOWER_OF_CAELID",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`basic connections > Limgrave -> Liurnia 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "description": "Take the shortcut near Stormveil Castle",
+        "requirements": [],
+      },
+      "to": "LIURNIA",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`basic connections > Limgrave -> Stormveil Castle 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "Killing Margit, the Fell Omen is required, but you disallowed fighting bosses.",
+  ],
+}
+`;
+
+exports[`basic connections > Limgrave -> Waypoint Ruins 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "LIMGRAVE_WAYPOINT_RUINS",
+    },
+  ],
+  "reasons": [],
+}
+`;

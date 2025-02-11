@@ -1,0 +1,361 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`complex connections > Limgrave -> Ashen Leyndell -> Rivers of Blood 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "description": "Take the shortcut near Stormveil Castle",
+        "requirements": [],
+      },
+      "to": "LIURNIA",
+    },
+    {
+      "from": "LIURNIA",
+      "metadata": {
+        "description": "Access via Grand Lift of Dectus",
+        "requirements": [
+          {
+            "type": "item",
+            "value": "DECTUS_MEDALLION",
+          },
+        ],
+      },
+      "to": "ALTUS_PLATEAU",
+    },
+    {
+      "from": "ALTUS_PLATEAU",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+    },
+    {
+      "from": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+      "metadata": {
+        "description": "Capital turns to ash after defeating Maliketh",
+        "requirements": [
+          {
+            "type": "flag",
+            "value": "LEYNDELL_CAPITAL_ASHEN",
+          },
+        ],
+      },
+      "to": "LEYNDELL_ASHEN_CAPITAL",
+    },
+    {
+      "from": "LEYNDELL_ASHEN_CAPITAL",
+      "metadata": {
+        "requirements": [
+          {
+            "type": "flag",
+            "value": "LEYNDELL_CAPITAL_ASHEN",
+          },
+        ],
+      },
+      "to": "ALTUS_PLATEAU_FORBIDDEN_LANDS",
+    },
+    {
+      "from": "ALTUS_PLATEAU_FORBIDDEN_LANDS",
+      "metadata": {
+        "description": "Access via Grand Lift of Rold",
+        "requirements": [
+          {
+            "type": "item",
+            "value": "ROLD_MEDALLION",
+          },
+        ],
+      },
+      "to": "MOUNTAINTOPS_OF_THE_GIANTS",
+    },
+    {
+      "from": "MOUNTAINTOPS_OF_THE_GIANTS",
+      "metadata": {
+        "description": "Defeat Bloody Finger Okina when he invades in the Church of Repose",
+        "requirements": [],
+      },
+      "to": "RIVERS_OF_BLOOD",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`complex connections > Limgrave -> Fractured Marika 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "description": "Take the shortcut near Stormveil Castle",
+        "requirements": [],
+      },
+      "to": "LIURNIA",
+    },
+    {
+      "from": "LIURNIA",
+      "metadata": {
+        "description": "Access via Grand Lift of Dectus",
+        "requirements": [
+          {
+            "type": "item",
+            "value": "DECTUS_MEDALLION",
+          },
+        ],
+      },
+      "to": "ALTUS_PLATEAU",
+    },
+    {
+      "from": "ALTUS_PLATEAU",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+    },
+    {
+      "from": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+      "metadata": {
+        "description": "Capital turns to ash after defeating Maliketh",
+        "requirements": [
+          {
+            "type": "flag",
+            "value": "LEYNDELL_CAPITAL_ASHEN",
+          },
+        ],
+      },
+      "to": "LEYNDELL_ASHEN_CAPITAL",
+    },
+    {
+      "from": "LEYNDELL_ASHEN_CAPITAL",
+      "metadata": {
+        "requirements": [
+          {
+            "type": "boss",
+            "value": "SIR_GIDEON_OFNIR",
+          },
+        ],
+      },
+      "to": "LEYNDELL_ASHEN_ELDEN_THRONE",
+    },
+    {
+      "from": "LEYNDELL_ASHEN_ELDEN_THRONE",
+      "metadata": {
+        "requirements": [
+          {
+            "type": "boss",
+            "value": "GODFREY_FIRST_ELDEN_LORD",
+          },
+        ],
+      },
+      "to": "LEYNDELL_FRACTURED_MARIKA",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`complex connections > Limgrave -> Somberstone Miner's Bell Bearing (5) 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "description": "Take the shortcut near Stormveil Castle",
+        "requirements": [],
+      },
+      "to": "LIURNIA",
+    },
+    {
+      "from": "LIURNIA",
+      "metadata": {
+        "description": "Access via Grand Lift of Dectus",
+        "requirements": [
+          {
+            "type": "item",
+            "value": "DECTUS_MEDALLION",
+          },
+        ],
+      },
+      "to": "ALTUS_PLATEAU",
+    },
+    {
+      "from": "ALTUS_PLATEAU",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+    },
+    {
+      "from": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+      "metadata": {
+        "description": "Enter Leyndell after defeating two Shardbearers",
+        "requirements": [
+          {
+            "type": "boss",
+            "value": "DRACONIC_TREE_SENTINEL",
+          },
+          {
+            "type": "boss",
+            "value": "SHARDBEARERS",
+          },
+          {
+            "not": true,
+            "type": "flag",
+            "value": "LEYNDELL_CAPITAL_ASHEN",
+          },
+        ],
+      },
+      "to": "LEYNDELL_ROYAL_CAPITAL",
+    },
+    {
+      "from": "LEYNDELL_ROYAL_CAPITAL",
+      "metadata": {
+        "requirements": [
+          {
+            "not": true,
+            "type": "flag",
+            "value": "LEYNDELL_CAPITAL_ASHEN",
+          },
+        ],
+      },
+      "to": "ALTUS_PLATEAU_FORBIDDEN_LANDS",
+    },
+    {
+      "from": "ALTUS_PLATEAU_FORBIDDEN_LANDS",
+      "metadata": {
+        "description": "Access via Grand Lift of Rold",
+        "requirements": [
+          {
+            "type": "item",
+            "value": "ROLD_MEDALLION",
+          },
+        ],
+      },
+      "to": "MOUNTAINTOPS_OF_THE_GIANTS",
+    },
+    {
+      "from": "MOUNTAINTOPS_OF_THE_GIANTS",
+      "metadata": {
+        "description": "Transported to Farum Azula after burning the Erdtree",
+        "requirements": [
+          {
+            "type": "boss",
+            "value": "FIRE_GIANT",
+          },
+        ],
+      },
+      "to": "FARUM_AZULA",
+    },
+    {
+      "from": "FARUM_AZULA",
+      "metadata": {
+        "requirements": [
+          {
+            "type": "boss",
+            "value": "GODSKIN_DUO",
+          },
+        ],
+      },
+      "to": "FARUM_AZULA_POST_GODSKIN_DUO",
+    },
+    {
+      "from": "FARUM_AZULA_POST_GODSKIN_DUO",
+      "metadata": {
+        "description": "Down the elevator from the 'Beside the Great Bridge' Site of Grace in the small church",
+        "requirements": [],
+      },
+      "to": "SOMBERSTONE_MINERS_BELL_BEARING_5",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`complex connections > Limgrave -> Triple Rings of Light 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "description": "Take the shortcut near Stormveil Castle",
+        "requirements": [],
+      },
+      "to": "LIURNIA",
+    },
+    {
+      "from": "LIURNIA",
+      "metadata": {
+        "description": "Access via Grand Lift of Dectus",
+        "requirements": [
+          {
+            "type": "item",
+            "value": "DECTUS_MEDALLION",
+          },
+        ],
+      },
+      "to": "ALTUS_PLATEAU",
+    },
+    {
+      "from": "ALTUS_PLATEAU",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+    },
+    {
+      "from": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
+      "metadata": {
+        "requirements": [
+          {
+            "description": "",
+            "type": "glitch",
+            "value": "ZIP",
+          },
+        ],
+      },
+      "to": "CONSECRATED_SNOWFIELD",
+    },
+    {
+      "from": "CONSECRATED_SNOWFIELD",
+      "metadata": {
+        "requirements": [],
+      },
+      "to": "CONSECRATED_SNOWFIELD_ORDINA_LITURGICAL_TOWN",
+    },
+    {
+      "from": "CONSECRATED_SNOWFIELD_ORDINA_LITURGICAL_TOWN",
+      "metadata": {
+        "description": "Complete the evergaol seal puzzle to access the portal",
+        "requirements": [],
+      },
+      "to": "MIQUELLAS_HALIGTREE",
+    },
+    {
+      "from": "MIQUELLAS_HALIGTREE",
+      "metadata": {
+        "requirements": [
+          {
+            "type": "boss",
+            "value": "LORETTA_KNIGHT_OF_THE_HALIGTREE",
+          },
+        ],
+      },
+      "to": "ELPHAEL_BRACE_OF_THE_HALIGTREE",
+    },
+    {
+      "from": "ELPHAEL_BRACE_OF_THE_HALIGTREE",
+      "metadata": {
+        "description": "In a sealed treasure room just under the Prayer Room that requires a Stonesword Key to unlock.",
+        "requirements": [],
+      },
+      "to": "TRIPLE_RINGS_OF_LIGHT",
+    },
+  ],
+  "reasons": [],
+}
+`;

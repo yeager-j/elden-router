@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`routing errors > Bolt of Gransax is not available when Leyndell is ashen 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "This route is not available because Leyndell has been turned to ash",
+  ],
+}
+`;
+
+exports[`routing errors > Can enter Leyndell bossless, but must allow glitches 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "A Zip Glitch is required, but you disallowed glitching.",
+  ],
+}
+`;
+
+exports[`routing errors > Cannot enter Stormveil without defeating Margit the Fell 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "Killing Margit, the Fell Omen is required, but you disallowed fighting bosses.",
+  ],
+}
+`;
+
+exports[`routing errors > Erdtree's Favor +2 is not available unless Leyndell is ashen 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "Leyndell must be turned to ash. Defeat Maliketh, the Black Blade to continue",
+  ],
+}
+`;
+
+exports[`routing errors > Must have Dectus Medallion to enter Altus Plateau bossless 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "You need the Dectus Medallion to proceed.",
+  ],
+}
+`;
