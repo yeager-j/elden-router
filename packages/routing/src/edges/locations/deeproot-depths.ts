@@ -10,7 +10,7 @@ export const deeprootEdges: EdgeData[] = [
     to: Location.DEEPROOT_DEPTHS,
     directed: true,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -19,7 +19,9 @@ export const deeprootEdges: EdgeData[] = [
     directed: true,
     metadata: {
       description: "Access via defeating the Valiant Gargoyles",
-      requirements: [{ type: "boss", value: Enemy.VALIANT_GARGOYLES }],
+      requirements: {
+        requiredBosses: [Enemy.VALIANT_GARGOYLES],
+      },
     },
   },
 
@@ -28,14 +30,14 @@ export const deeprootEdges: EdgeData[] = [
     from: Location.DEEPROOT_DEPTHS,
     to: Location.DEEPROOT_DEPTHS_NAMELESS_ETERNAL_CITY,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.DEEPROOT_DEPTHS_NAMELESS_ETERNAL_CITY,
     to: Location.DEEPROOT_DEPTHS_FORTISSAX_ARENA,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 ];

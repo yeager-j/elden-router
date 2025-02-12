@@ -1,6 +1,8 @@
 import * as React from "react";
+import StepList from "@/components/StepList";
+import { Step } from "@/lib/convert-route";
+import { useAppStore } from "@/state/search-preferences";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { useAtom } from "jotai";
 
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
@@ -21,12 +23,8 @@ import {
   DrawerTitle,
 } from "@workspace/ui/components/drawer";
 import { useMediaQuery } from "@workspace/ui/hooks/use-media-query";
-import type { GetPathResult } from "@workspace/routing";
-import { Item, ItemData } from "@workspace/data";
-
-import StepList from "@/components/StepList";
-import { Step } from "@/lib/convert-route";
-import { allowBossesAtom, allowGlitchesAtom } from "@/state/search-preferences";
+import { GetPathResult } from "@workspace/routing/types";
+import { Item, ItemData } from "@workspace/data/items";
 
 interface DestinationRouteProps {
   destination: Item;
@@ -40,8 +38,8 @@ export function DestinationRoute(props: DestinationRouteProps) {
   const { destination, routeData, stepData, isOpen, setIsOpen } = props;
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
-  const [allowBosses] = useAtom(allowBossesAtom);
-  const [allowGlitches] = useAtom(allowGlitchesAtom);
+  const allowGlitches = useAppStore((state) => state.allowGlitches);
+  const allowBosses = useAppStore((state) => state.allowBosses);
 
   const itemMetadata = ItemData[destination];
 

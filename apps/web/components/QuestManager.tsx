@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
-import { useAtom } from "jotai/index";
+import QuestlineBuilder from "@/components/QuestlineBuilder";
+import { useAppStore } from "@/state/search-preferences";
 import { ChevronDown } from "lucide-react";
 
 import { Button } from "@workspace/ui/components/button";
@@ -35,10 +36,7 @@ import {
   QuestlineCategory,
   QuestlineCategoryNames,
   QuestlineData,
-} from "@workspace/data";
-
-import QuestlineBuilder from "@/components/QuestlineBuilder";
-import { completedStagesSetAtom } from "@/state/search-preferences";
+} from "@workspace/data/quests";
 
 interface QuestManagerProps {
   children: ReactNode;
@@ -47,7 +45,8 @@ interface QuestManagerProps {
 export function QuestManager(props: QuestManagerProps) {
   const { children } = props;
   const [activeQuest, setActiveQuest] = useState<Questline>(Questline.SELEN);
-  const [completedStages, toggleStage] = useAtom(completedStagesSetAtom);
+  const completedStages = useAppStore((state) => state.completedStages);
+  const toggleStage = useAppStore((state) => state.toggleStage);
 
   const activeQuestData = QuestlineData[activeQuest];
 

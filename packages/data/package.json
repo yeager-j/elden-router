@@ -16,11 +16,7 @@
   },
   "imports": {
     "#*": [
-      "./src/*",
-      "./src/*.ts",
-      "./src/*.tsx",
-      "./src/*/index.ts",
-      "./src/*/index.tsx"
+      "./src/*.ts"
     ]
   },
   "prettier": "@workspace/prettier-config",

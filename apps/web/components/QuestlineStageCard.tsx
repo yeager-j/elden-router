@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, useEffect, useState } from "react";
-import { useAtom } from "jotai";
+import { useAppStore } from "@/state/search-preferences";
 
 import { Badge } from "@workspace/ui/components/badge";
 import { Checkbox } from "@workspace/ui/components/checkbox";
@@ -11,9 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select";
-import { QuestlineStage, QuestlineStageData } from "@workspace/data";
-
-import { completedStagesSetAtom } from "@/state/search-preferences";
+import { QuestlineStage, QuestlineStageData } from "@workspace/data/quests";
 
 interface QuestlineStageCardProps
   extends ComponentPropsWithoutRef<typeof Checkbox> {
@@ -25,7 +23,8 @@ export default function QuestlineStageCard(props: QuestlineStageCardProps) {
   const { stage, onNextStage, ...checkboxProps } = props;
   const localStorageKey = `QuestlineDecision-${stage}`;
   const metadata = QuestlineStageData[stage];
-  const [completedStages, toggleStage] = useAtom(completedStagesSetAtom);
+  const completedStages = useAppStore((state) => state.completedStages);
+  const toggleStage = useAppStore((state) => state.toggleStage);
 
   const [questDecision, setQuestDecision] = useState<QuestlineStage>();
 

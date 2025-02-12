@@ -10,7 +10,7 @@ export const sorceryLocations: EdgeData[] = [
     metadata: {
       description:
         "In the center of the floor of the West-most wall in the Scarlet Rot area",
-      requirements: [],
+      requirements: {},
     },
   },
 ];

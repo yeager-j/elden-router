@@ -9,7 +9,7 @@ export const limgraveEdges: EdgeData[] = [
     to: Location.ROUNDTABLE_HOLD,
     metadata: {
       description: "Warp to the Roundtable Hold",
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -19,14 +19,16 @@ export const limgraveEdges: EdgeData[] = [
     to: Location.LIMGRAVE_STORMVEIL_CASTLE,
     metadata: {
       description: "Enter Stormveil Castle through the main gate",
-      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN }],
+      requirements: {
+        requiredBosses: [Enemy.MARGIT_THE_FELL_OMEN],
+      },
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_WEEPING_PENINSULA,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -36,14 +38,16 @@ export const limgraveEdges: EdgeData[] = [
     to: Location.LIMGRAVE_STORMVEIL_CASTLE_THRONE_ROOM,
     metadata: {
       description: "Access throne room after navigating castle",
-      requirements: [{ type: "boss", value: Enemy.GODRICK_THE_GRAFTED }],
+      requirements: {
+        requiredBosses: [Enemy.GODRICK_THE_GRAFTED],
+      },
     },
   },
   {
     from: Location.LIMGRAVE_STORMVEIL_CASTLE,
     to: Location.LIMGRAVE_DIVINE_TOWER,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -51,7 +55,7 @@ export const limgraveEdges: EdgeData[] = [
     to: Location.LIMGRAVE_STORMVEIL_CASTLE_THRONE_ROOM,
     metadata: {
       description: "Backtrack from Liurnia",
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -60,21 +64,21 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_STORMFOOT_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_MURKWATER_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_DEATHTOUCHED_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -83,28 +87,28 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_GROVESIDE_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_COASTAL_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_MURKWATER_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_HIGHROAD_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -113,7 +117,7 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_LIMGRAVE_TUNNELS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -122,7 +126,7 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_WAYPOINT_RUINS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -130,28 +134,32 @@ export const limgraveEdges: EdgeData[] = [
     to: Location.LIMGRAVE_WAYPOINT_RUINS_SELLEN_ROOM,
     metadata: {
       description: "Access Sellen's underground study",
-      requirements: [{ type: "boss", value: Enemy.MAD_PUMPKIN_HEAD }],
+      requirements: {
+        requiredBosses: [Enemy.MAD_PUMPKIN_HEAD],
+      },
     },
   },
   {
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_FRINGEFOLK_HEROS_GRAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE_COASTAL_CAVE,
     to: Location.LIMGRAVE_CHURCH_OF_DRAGON_COMMUNION,
     metadata: {
-      requirements: [{ type: "boss", value: Enemy.DEMI_HUMAN_CHIEF }],
+      requirements: {
+        requiredBosses: [Enemy.DEMI_HUMAN_CHIEF],
+      },
     },
   },
   {
     from: Location.LIURNIA_FOUR_BELFRIES,
     to: Location.CHAPEL_OF_ANTICIPATION,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -160,42 +168,42 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE_WEEPING_PENINSULA,
     to: Location.LIMGRAVE_CASTLE_MORNE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE_WEEPING_PENINSULA,
     to: Location.LIMGRAVE_MORNE_TUNNEL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE_WEEPING_PENINSULA,
     to: Location.LIMGRAVE_EARTHBORE_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE_WEEPING_PENINSULA,
     to: Location.LIMGRAVE_IMPALERS_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE_WEEPING_PENINSULA,
     to: Location.LIMGRAVE_TOMBSWARD_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.LIMGRAVE_WEEPING_PENINSULA,
     to: Location.LIMGRAVE_TOMBSWARD_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 ];

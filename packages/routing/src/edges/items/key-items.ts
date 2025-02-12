@@ -10,7 +10,7 @@ export const keyItemLocations: EdgeData[] = [
     metadata: {
       description:
         "Down the elevator from the 'Beside the Great Bridge' Site of Grace in the small church",
-      requirements: [],
+      requirements: {},
     },
   },
 ];

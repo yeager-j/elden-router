@@ -7,7 +7,7 @@ exports[`basic connections > Limgrave -> Caelid 1`] = `
     {
       "from": "LIMGRAVE",
       "metadata": {
-        "requirements": [],
+        "requirements": {},
       },
       "to": "CAELID",
     },
@@ -23,21 +23,21 @@ exports[`basic connections > Limgrave -> Divine Tower of Caelid 1`] = `
     {
       "from": "LIMGRAVE",
       "metadata": {
-        "requirements": [],
+        "requirements": {},
       },
       "to": "CAELID",
     },
     {
       "from": "CAELID",
       "metadata": {
-        "requirements": [],
+        "requirements": {},
       },
       "to": "DRAGONBARROW",
     },
     {
       "from": "DRAGONBARROW",
       "metadata": {
-        "requirements": [],
+        "requirements": {},
       },
       "to": "DRAGONBARROW_DIVINE_TOWER_OF_CAELID",
     },
@@ -54,7 +54,7 @@ exports[`basic connections > Limgrave -> Liurnia 1`] = `
       "from": "LIMGRAVE",
       "metadata": {
         "description": "Take the shortcut near Stormveil Castle",
-        "requirements": [],
+        "requirements": {},
       },
       "to": "LIURNIA",
     },
@@ -80,7 +80,7 @@ exports[`basic connections > Limgrave -> Waypoint Ruins 1`] = `
     {
       "from": "LIMGRAVE",
       "metadata": {
-        "requirements": [],
+        "requirements": {},
       },
       "to": "LIMGRAVE_WAYPOINT_RUINS",
     },

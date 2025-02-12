@@ -4,13 +4,8 @@ import { Loader2 } from "lucide-react";
 
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
-import {
-  Item,
-  ItemData,
-  ItemTypeNames,
-  Location,
-  LocationNames,
-} from "@workspace/data";
+import { Item, ItemData, ItemTypeNames } from "@workspace/data/items";
+import { Location, LocationNames } from "@workspace/data/locations";
 
 interface DestinationCardProps {
   item: Item;

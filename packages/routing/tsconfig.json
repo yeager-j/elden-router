@@ -2,9 +2,12 @@
   "extends": "@workspace/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["./src/*"]
+    }
   },
-  "include": ["."],
+  "include": ["./src"],
   "exclude": ["node_modules", "dist"]
 }

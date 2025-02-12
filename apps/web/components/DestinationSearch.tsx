@@ -1,34 +1,28 @@
 "use client";
 
 import { useState } from "react";
-import { useAtom } from "jotai/index";
-import { Settings2 } from "lucide-react";
-
-import { Button } from "@workspace/ui/components/button";
-import { Input } from "@workspace/ui/components/input";
-import { toast } from "@workspace/ui/components/sonner";
-import type { GetPathResult } from "@workspace/routing";
-import { Item, ItemData, ItemMetadata } from "@workspace/data";
-
 import { getRoute } from "@/actions/pathfinding";
 import DestinationCard from "@/components/DestinationCard";
 import { DestinationRoute } from "@/components/DestinationRoute";
 import RouteCustomization from "@/components/RouteCustomization";
 import { convertRouteToSteps, Step } from "@/lib/convert-route";
-import {
-  acquiredItemsSetAtom,
-  allowBossesAtom,
-  allowGlitchesAtom,
-  completedStagesSetAtom,
-  enabledFlagsSetAtom,
-} from "@/state/search-preferences";
+import { useAppStore } from "@/state/search-preferences";
+import { Settings2 } from "lucide-react";
+
+import { Button } from "@workspace/ui/components/button";
+import { Input } from "@workspace/ui/components/input";
+import { toast } from "@workspace/ui/components/sonner";
+import { GetPathResult } from "@workspace/routing/types";
+import { Item, ItemData, ItemMetadata } from "@workspace/data/items";
 
 export default function DestinationSearch() {
-  const [allowBosses] = useAtom(allowBossesAtom);
-  const [allowGlitches] = useAtom(allowGlitchesAtom);
-  const [acquiredItems] = useAtom(acquiredItemsSetAtom);
-  const [completedQuestlineStages] = useAtom(completedStagesSetAtom);
-  const [flagsEnabled] = useAtom(enabledFlagsSetAtom);
+  const allowGlitches = useAppStore((state) => state.allowGlitches);
+  const allowBosses = useAppStore((state) => state.allowBosses);
+  const acquiredItems = useAppStore((state) => state.acquiredItems);
+  const completedQuestlineStages = useAppStore(
+    (state) => state.completedStages,
+  );
+  const flagsEnabled = useAppStore((state) => state.enabledFlags);
 
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);

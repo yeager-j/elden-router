@@ -1,14 +1,8 @@
-import { GetPathResult, Requirement } from "@workspace/routing";
-import {
-  Enemy,
-  EnemyData,
-  Glitch,
-  GlitchNames,
-  Item,
-  ItemData,
-  Location,
-  LocationNames,
-} from "@workspace/data";
+import { GetPathResult } from "@workspace/routing/types";
+import { EnemyData } from "@workspace/data/enemies";
+import { GlitchNames } from "@workspace/data/glitches";
+import { Item, ItemData } from "@workspace/data/items";
+import { Location, LocationNames } from "@workspace/data/locations";
 
 export interface Step {
   title: string;
@@ -32,9 +26,11 @@ export function convertRouteToSteps(route: GetPathResult) {
   }
 
   route.pathSteps.forEach((pathStep) => {
-    pathStep.metadata.requirements.forEach((requirement: Requirement) => {
-      if (requirement.type === "boss") {
-        const bossData = EnemyData[requirement.value as Enemy];
+    const requirements = pathStep.metadata.requirements;
+
+    if (requirements.requiredBosses && requirements.requiredBosses.length > 0) {
+      for (const boss of requirements.requiredBosses) {
+        const bossData = EnemyData[boss];
 
         steps.push({
           type: "DEFEAT",
@@ -42,17 +38,17 @@ export function convertRouteToSteps(route: GetPathResult) {
           description: bossData.shortDescription,
         });
       }
+    }
 
-      if (requirement.type === "glitch") {
-        const glitchName = GlitchNames[requirement.value as Glitch];
+    if (requirements.requiredGlitch) {
+      const glitchName = GlitchNames[requirements.requiredGlitch.glitch];
 
-        steps.push({
-          type: "GLITCH",
-          title: `Perform a ${glitchName}`,
-          description: requirement.description,
-        });
-      }
-    });
+      steps.push({
+        type: "GLITCH",
+        title: `Perform a ${glitchName}`,
+        description: requirements.requiredGlitch.description,
+      });
+    }
 
     if (isStepAnItem(pathStep.to)) {
       steps.push({

@@ -1,5 +1,7 @@
 "use client";
 
+import StepListItem from "@/components/StepListItem";
+import { Step } from "@/lib/convert-route";
 import { AlertCircle } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -8,10 +10,7 @@ import {
   AlertDescription,
   AlertTitle,
 } from "@workspace/ui/components/alert";
-import type { GetPathResult } from "@workspace/routing";
-
-import StepListItem from "@/components/StepListItem";
-import { Step } from "@/lib/convert-route";
+import type { GetPathResult } from "@workspace/routing/types";
 
 const motionVariants = {
   hidden: {

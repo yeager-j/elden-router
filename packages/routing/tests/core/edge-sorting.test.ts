@@ -13,21 +13,26 @@ import { getBestEdge, getEdgeCost } from "#utils";
 describe("edge sort logic", () => {
   test("getEdgeCost: calculates correct cost for various edge requirements", () => {
     const edge1Metadata: EdgeMetadata = {
-      requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
-        { type: "item", value: ProgressionItem.DECTUS_MEDALLION },
-      ],
+      requirements: {
+        requiredBosses: [Enemy.MARGIT_THE_FELL_OMEN],
+        requiredItems: [ProgressionItem.ROLD_MEDALLION],
+      },
     };
 
     const edge2Metadata: EdgeMetadata = {
-      requirements: [
-        { type: "glitch", value: Glitch.ZIP, description: "" },
-        { type: "quest", stage: QuestlineStage.RANNI_STAGE_1 },
-      ],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+        requiredQuests: [QuestlineStage.RANNI_STAGE_1],
+      },
     };
 
     const edge3Metadata: EdgeMetadata = {
-      requirements: [{ type: "flag", value: Flag.RADAHN_DEFEATED }],
+      requirements: {
+        requiredEnabledFlags: [Flag.RADAHN_FESTIVAL_ENABLED],
+      },
     };
 
     expect(getEdgeCost(edge1Metadata)).toBe(13);
@@ -45,11 +50,18 @@ describe("edge sort logic", () => {
     graph.addNode(nodeB);
 
     const edge1Metadata: EdgeMetadata = {
-      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN }],
+      requirements: {
+        requiredBosses: [Enemy.MARGIT_THE_FELL_OMEN],
+      },
     };
 
     const edge2Metadata: EdgeMetadata = {
-      requirements: [{ type: "glitch", value: Glitch.ZIP, description: "" }],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+      },
     };
 
     // Add multiple edges between A -> B
@@ -71,11 +83,15 @@ describe("edge sort logic", () => {
     graph.addNode(nodeB);
 
     const edge1Metadata: EdgeMetadata = {
-      requirements: [{ type: "item", value: ProgressionItem.DECTUS_MEDALLION }],
+      requirements: {
+        requiredItems: [ProgressionItem.HALIGTREE_MEDALLION],
+      },
     };
 
     const edge2Metadata: EdgeMetadata = {
-      requirements: [{ type: "flag", value: Flag.RADAHN_DEFEATED }],
+      requirements: {
+        requiredEnabledFlags: [Flag.RADAHN_FESTIVAL_ENABLED],
+      },
     };
 
     // Add multiple edges between A -> B
@@ -97,14 +113,19 @@ describe("edge sort logic", () => {
     graph.addNode(nodeB);
 
     const edge1Metadata: EdgeMetadata = {
-      requirements: [{ type: "quest", stage: QuestlineStage.SELLEN_STAGE_5 }],
+      requirements: {
+        requiredQuests: [QuestlineStage.RANNI_STAGE_1],
+      },
     };
 
     const edge2Metadata: EdgeMetadata = {
-      requirements: [
-        { type: "glitch", value: Glitch.ZIP, description: "" },
-        { type: "item", value: ProgressionItem.DECTUS_MEDALLION },
-      ],
+      requirements: {
+        requiredItems: [ProgressionItem.HALIGTREE_MEDALLION],
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+      },
     };
 
     // Add multiple edges between A -> B

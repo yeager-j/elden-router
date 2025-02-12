@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ReactNode } from "react";
-import { useAtom } from "jotai";
+import { QuestManager } from "@/components/QuestManager";
+import { useAppStore } from "@/state/search-preferences";
 import { ListTodo } from "lucide-react";
 
 import { Button } from "@workspace/ui/components/button";
@@ -25,20 +26,8 @@ import {
 import { Separator } from "@workspace/ui/components/separator";
 import { Switch } from "@workspace/ui/components/switch";
 import { useMediaQuery } from "@workspace/ui/hooks/use-media-query";
-import {
-  Flag,
-  FlagData,
-  ProgressionItem,
-  ProgressionItemData,
-} from "@workspace/data";
-
-import { QuestManager } from "@/components/QuestManager";
-import {
-  acquiredItemsSetAtom,
-  allowBossesAtom,
-  allowGlitchesAtom,
-  enabledFlagsSetAtom,
-} from "@/state/search-preferences";
+import { Flag, FlagData } from "@workspace/data/flags";
+import { ProgressionItem, ProgressionItemData } from "@workspace/data/items";
 
 interface RouteCustomizationProps {
   children: ReactNode;
@@ -90,10 +79,17 @@ export default function RouteCustomization(props: RouteCustomizationProps) {
 }
 
 function RouteSettings() {
-  const [allowGlitches, setAllowGlitches] = useAtom(allowGlitchesAtom);
-  const [allowBosses, setAllowBosses] = useAtom(allowBossesAtom);
-  const [acquiredItems, toggleItem] = useAtom(acquiredItemsSetAtom);
-  const [enabledFlags, toggleFlag] = useAtom(enabledFlagsSetAtom);
+  const allowGlitches = useAppStore((state) => state.allowGlitches);
+  const setAllowGlitches = useAppStore((state) => state.setAllowGlitches);
+
+  const allowBosses = useAppStore((state) => state.allowBosses);
+  const setAllowBosses = useAppStore((state) => state.setAllowBosses);
+
+  const acquiredItems = useAppStore((state) => state.acquiredItems);
+  const toggleItem = useAppStore((state) => state.toggleAcquiredItem);
+
+  const enabledFlags = useAppStore((state) => state.enabledFlags);
+  const toggleFlag = useAppStore((state) => state.toggleFlag);
 
   return (
     <>

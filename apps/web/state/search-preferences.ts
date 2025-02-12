@@ -1,67 +1,122 @@
-import { atom } from "jotai";
-import { atomWithStorage } from "jotai/utils";
+import { create } from "zustand";
+import { persist, StorageValue } from "zustand/middleware";
 
-import { Flag, ProgressionItem, QuestlineStage } from "@workspace/data";
+import { Flag } from "@workspace/data/flags";
+import { ProgressionItem } from "@workspace/data/items";
+import { QuestlineStage } from "@workspace/data/quests";
 
-// General Preferences
-export const allowGlitchesAtom = atomWithStorage("allowGlitches", false);
-export const allowBossesAtom = atomWithStorage("allowBosses", false);
+interface AppState {
+  // General Preferences
+  allowGlitches: boolean;
+  setAllowGlitches: (value: boolean) => void;
 
-// Item Settings
-export const acquiredItemsAtom = atomWithStorage<ProgressionItem[]>(
-  "acquiredItems", // Key in localStorage
-  [], // Default value
-);
+  allowBosses: boolean;
+  setAllowBosses: (value: boolean) => void;
 
-// Utility to interact with the `Set`
-export const acquiredItemsSetAtom = atom(
-  (get) => new Set<ProgressionItem>(get(acquiredItemsAtom)), // Convert array to Set
-  (get, set, stageId: ProgressionItem) => {
-    const acquiredItems = new Set<ProgressionItem>(get(acquiredItemsAtom)); // Clone current Set
-    if (acquiredItems.has(stageId)) {
-      acquiredItems.delete(stageId); // Remove if already completed
-    } else {
-      acquiredItems.add(stageId); // Add if not completed
-    }
-    set(acquiredItemsAtom, [...acquiredItems]); // Save as array
-  },
-);
+  // Item Settings
+  acquiredItems: Set<ProgressionItem>;
+  toggleAcquiredItem: (item: ProgressionItem) => void;
 
-// Flags
-export const enabledFlagsAtom = atomWithStorage<Flag[]>(
-  "enabledFlags", // Key in localStorage
-  [], // Default value
-);
+  // Flags
+  enabledFlags: Set<Flag>;
+  toggleFlag: (flag: Flag) => void;
 
-// Utility to interact with the `Set`
-export const enabledFlagsSetAtom = atom(
-  (get) => new Set<Flag>(get(enabledFlagsAtom)), // Convert array to Set
-  (get, set, stageId: Flag) => {
-    const enabledFlags = new Set<Flag>(get(enabledFlagsAtom)); // Clone current Set
-    if (enabledFlags.has(stageId)) {
-      enabledFlags.delete(stageId); // Remove if already completed
-    } else {
-      enabledFlags.add(stageId); // Add if not completed
-    }
-    set(enabledFlagsAtom, [...enabledFlags]); // Save as array
-  },
-);
+  // Completed Stages
+  completedStages: Set<QuestlineStage>;
+  toggleStage: (stage: QuestlineStage) => void;
+}
 
-export const completedStagesAtom = atomWithStorage<QuestlineStage[]>(
-  "completedStages", // Key in localStorage
-  [], // Default value
-);
+export const useAppStore = create<AppState>()(
+  persist(
+    (set, get) => ({
+      // ---------- General Preferences ----------
+      allowGlitches: false,
+      setAllowGlitches: (value: boolean) =>
+        set(() => ({ allowGlitches: value })),
 
-// Utility to interact with the `Set`
-export const completedStagesSetAtom = atom(
-  (get) => new Set<QuestlineStage>(get(completedStagesAtom)), // Convert array to Set
-  (get, set, stageId: QuestlineStage) => {
-    const completedStages = new Set<QuestlineStage>(get(completedStagesAtom)); // Clone current Set
-    if (completedStages.has(stageId)) {
-      completedStages.delete(stageId); // Remove if already completed
-    } else {
-      completedStages.add(stageId); // Add if not completed
-    }
-    set(completedStagesAtom, [...completedStages]); // Save as array
-  },
+      allowBosses: false,
+      setAllowBosses: (value: boolean) => set(() => ({ allowBosses: value })),
+
+      // ---------- Item Settings ----------
+      acquiredItems: new Set(),
+      toggleAcquiredItem: (item: ProgressionItem) => {
+        const currentItems = new Set(get().acquiredItems);
+        if (currentItems.has(item)) {
+          currentItems.delete(item);
+        } else {
+          currentItems.add(item);
+        }
+        set({ acquiredItems: currentItems });
+      },
+
+      // ---------- Flags ----------
+      enabledFlags: new Set(),
+      toggleFlag: (flag: Flag) => {
+        const currentFlags = new Set(get().enabledFlags);
+        if (currentFlags.has(flag)) {
+          currentFlags.delete(flag);
+        } else {
+          currentFlags.add(flag);
+        }
+        set({ enabledFlags: currentFlags });
+      },
+
+      // ---------- Completed Stages ----------
+      completedStages: new Set(),
+      toggleStage: (stage: QuestlineStage) => {
+        const currentStages = new Set(get().completedStages);
+        if (currentStages.has(stage)) {
+          currentStages.delete(stage);
+        } else {
+          currentStages.add(stage);
+        }
+        set({ completedStages: currentStages });
+      },
+    }),
+    {
+      // Everything is persisted under this single key in localStorage.
+      // Change to whatever name you prefer.
+      name: "elden-router",
+      storage: {
+        getItem: (name) => {
+          const str = localStorage.getItem(name);
+          if (!str) return null;
+
+          // Parse the JSON
+          const parsed: StorageValue<AppState> = JSON.parse(str);
+
+          // Convert arrays back to Sets
+          const state = parsed.state;
+          return {
+            ...parsed,
+            state: {
+              ...state,
+              acquiredItems: new Set(state.acquiredItems),
+              enabledFlags: new Set(state.enabledFlags),
+              completedStages: new Set(state.completedStages),
+            },
+          };
+        },
+        setItem: (name, newValue) => {
+          // Convert Sets to arrays so they can be stringified
+          const state = newValue.state as AppState;
+          const toStore = {
+            ...newValue,
+            state: {
+              ...state,
+              acquiredItems: Array.from(state.acquiredItems),
+              enabledFlags: Array.from(state.enabledFlags),
+              completedStages: Array.from(state.completedStages),
+            },
+          };
+
+          localStorage.setItem(name, JSON.stringify(toStore));
+        },
+
+        removeItem: (name) => {
+          localStorage.removeItem(name);
+        },
+      },
+    },
+  ),
 );

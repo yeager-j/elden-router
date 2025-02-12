@@ -26,43 +26,19 @@ export interface PathSettings {
   flagsEnabled: Set<Flag>;
 }
 
-export type BossRequirement = {
-  type: "boss";
-  value: Enemy;
-};
-
-export type GlitchRequirement = {
-  type: "glitch";
-  value: Glitch;
-  description: string;
-};
-
-export type ItemRequirement = {
-  type: "item";
-  value: ProgressionItem;
-};
-
-export type QuestRequirement = {
-  type: "quest";
-  stage: QuestlineStage;
-};
-
-export type FlagRequirement = {
-  type: "flag";
-  value: Flag;
-  not?: boolean;
-};
-
-export type Requirement =
-  | BossRequirement
-  | GlitchRequirement
-  | ItemRequirement
-  | QuestRequirement
-  | FlagRequirement;
-
 export interface EdgeMetadata {
   description?: string;
-  requirements: Requirement[];
+  requirements: {
+    requiredBosses?: Enemy[];
+    requiredGlitch?: {
+      glitch: Glitch;
+      description: string;
+    };
+    requiredItems?: ProgressionItem[];
+    requiredQuests?: QuestlineStage[];
+    requiredEnabledFlags?: Flag[];
+    requiredDisabledFlags?: Flag[];
+  };
 }
 
 export interface EdgeData {

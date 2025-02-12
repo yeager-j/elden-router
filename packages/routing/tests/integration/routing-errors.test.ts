@@ -1,9 +1,11 @@
 import { describe, expect, test } from "vitest";
 
-import { Flag, Item, Location, ProgressionItem } from "@workspace/data";
+import { Flag } from "@workspace/data/flags";
+import { Item, ProgressionItem } from "@workspace/data/items";
+import { Location } from "@workspace/data/locations";
 
-import { getPathToDestination } from "@/graph.ts";
-import { PathSettings } from "@/types.ts";
+import { getPathToDestination } from "#graph";
+import { PathSettings } from "#types";
 
 describe("routing errors", () => {
   test("Cannot enter Stormveil without defeating Margit the Fell", () => {

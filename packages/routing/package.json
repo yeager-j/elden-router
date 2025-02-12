@@ -8,13 +8,8 @@
     "test": "vitest"
   },
   "exports": {
-    "./*": [
-      "./src/*",
-      "./src/*.ts",
-      "./src/*.tsx",
-      "./src/*/index.ts",
-      "./src/*/index.tsx"
-    ]
+    "./graph": "./src/graph.ts",
+    "./types": "./src/types.ts"
   },
   "imports": {
     "#*": [

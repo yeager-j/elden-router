@@ -10,7 +10,7 @@ export const weaponLocations: EdgeData[] = [
     metadata: {
       description:
         "Defeat Bloody Finger Okina when he invades in the Church of Repose",
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -19,7 +19,7 @@ export const weaponLocations: EdgeData[] = [
     metadata: {
       description:
         "This weapon is found on the giant spear lodged into the building",
-      requirements: [],
+      requirements: {},
     },
   },
 ];

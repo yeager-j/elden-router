@@ -10,7 +10,7 @@ export const incantationLocations: EdgeData[] = [
     metadata: {
       description:
         "In a sealed treasure room just under the Prayer Room that requires a Stonesword Key to unlock.",
-      requirements: [],
+      requirements: {},
     },
   },
 ];

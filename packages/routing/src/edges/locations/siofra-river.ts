@@ -11,14 +11,14 @@ export const siofraRiverEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.SIOFRA_RIVER_WELL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.DEEP_SIOFRA_WELL,
     to: Location.DRAGONBARROW_SIOFRA_WELL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -26,7 +26,9 @@ export const siofraRiverEdges: EdgeData[] = [
     to: Location.NOKRON_ETERNAL_CITY,
     metadata: {
       description: "Access after stars fall",
-      requirements: [{ type: "flag", value: Flag.RADAHN_DEFEATED }],
+      requirements: {
+        requiredEnabledFlags: [Flag.RADAHN_DEFEATED],
+      },
     },
   },
 
@@ -36,28 +38,30 @@ export const siofraRiverEdges: EdgeData[] = [
     to: Location.NOKRON_SUB_AREA,
     metadata: {
       description: "Return to the starting area via portal",
-      requirements: [], // Might need Imbued Sword Key requirement
+      requirements: {}, // Might need Imbued Sword Key requirement
     },
   },
   {
     from: Location.NOKRON_ETERNAL_CITY,
     to: Location.NOKRON_ANCESTRAL_WOODS,
     metadata: {
-      requirements: [{ type: "boss", value: Enemy.MIMIC_TEAR }],
+      requirements: {
+        requiredBosses: [Enemy.MIMIC_TEAR],
+      },
     },
   },
   {
     from: Location.NOKRON_ANCESTRAL_WOODS,
     to: Location.NOKRON_NIGHTS_SACRED_GROUND,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.NOKRON_ANCESTRAL_WOODS,
     to: Location.NOKRON_SIOFRA_AQUEDUCT,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -66,14 +70,14 @@ export const siofraRiverEdges: EdgeData[] = [
     from: Location.SIOFRA_RIVER_WELL,
     to: Location.SIOFRA_RIVER_BANK,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.SIOFRA_RIVER_BANK,
     to: Location.DEEP_SIOFRA_WELL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -84,12 +88,9 @@ export const siofraRiverEdges: EdgeData[] = [
     directed: true,
     metadata: {
       description: "Teleport using Pureblood Knight's Medal",
-      requirements: [
-        {
-          type: "item",
-          value: ProgressionItem.PUREBLOOD_KNIGHTS_MEDAL,
-        },
-      ],
+      requirements: {
+        requiredItems: [ProgressionItem.PUREBLOOD_KNIGHTS_MEDAL],
+      },
     },
   },
   {
@@ -98,14 +99,14 @@ export const siofraRiverEdges: EdgeData[] = [
     directed: true,
     metadata: {
       description: "Portal near blood lake",
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.MOHGWYN_PALACE,
     to: Location.MOHGWYN_DYNASTY_MAUSOLEUM,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 ];

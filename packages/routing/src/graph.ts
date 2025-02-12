@@ -1,4 +1,4 @@
-import { MultiDirectedGraph } from "graphology";
+import { MultiGraph } from "graphology";
 import { dijkstra } from "graphology-shortest-path";
 
 import { Item } from "@workspace/data/items";
@@ -8,9 +8,8 @@ import { allEdges } from "#edges";
 import { EdgeMetadata, GetPathResult, PathSettings, PathStep } from "#types";
 import { checkEdgeMeetsSettings, getBestEdge } from "#utils";
 
-export function buildGraph(): MultiDirectedGraph<object, EdgeMetadata> {
-  const graph: MultiDirectedGraph<object, EdgeMetadata> =
-    new MultiDirectedGraph();
+export function buildGraph(): MultiGraph<object, EdgeMetadata> {
+  const graph: MultiGraph<object, EdgeMetadata> = new MultiGraph();
 
   const nodes = new Set<string>();
   allEdges.forEach((edge) => {

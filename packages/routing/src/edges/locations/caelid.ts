@@ -10,7 +10,7 @@ export const caelidEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.CAELID,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -19,7 +19,7 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID,
     to: Location.CAELID_REDMANE_CASTLE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -27,19 +27,16 @@ export const caelidEdges: EdgeData[] = [
     to: Location.CAELID_REDMANE_CASTLE_FESTIVAL,
     metadata: {
       description: "Castle transforms into festival grounds",
-      requirements: [
-        {
-          type: "flag",
-          value: Flag.RADAHN_FESTIVAL_ENABLED,
-        },
-      ],
+      requirements: {
+        requiredEnabledFlags: [Flag.RADAHN_FESTIVAL_ENABLED],
+      },
     },
   },
   {
     from: Location.CAELID,
     to: Location.DRAGONBARROW,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -49,7 +46,7 @@ export const caelidEdges: EdgeData[] = [
     to: Location.CAELID_WAILING_DUNES,
     metadata: {
       description: "Arena where you fight Radahn",
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -57,7 +54,9 @@ export const caelidEdges: EdgeData[] = [
     to: Location.CAELID_WAR_DEAD_CATACOMBS,
     metadata: {
       description: "Only accessible after defeating Radahn",
-      requirements: [{ type: "boss", value: Enemy.STARSCOURGE_RADAHN }],
+      requirements: {
+        requiredBosses: [Enemy.STARSCOURGE_RADAHN],
+      },
     },
   },
 
@@ -66,14 +65,14 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID,
     to: Location.CAELID_MINOR_ERDTREE_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.CAELID,
     to: Location.CAELID_CAELID_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -82,14 +81,14 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID,
     to: Location.CAELID_ABANDONED_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.CAELID,
     to: Location.CAELID_GAOL_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -98,14 +97,14 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID,
     to: Location.CAELID_GAEL_TUNNEL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.CAELID,
     to: Location.CAELID_SELLIA_CRYSTAL_TUNNEL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -115,7 +114,7 @@ export const caelidEdges: EdgeData[] = [
     to: Location.CAELID_SELLIA_HIDEAWAY,
     metadata: {
       description: "Access via a Spiritspring in Dragonbarrow",
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -124,14 +123,14 @@ export const caelidEdges: EdgeData[] = [
     from: Location.DRAGONBARROW,
     to: Location.DRAGONBARROW_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.DRAGONBARROW,
     to: Location.DRAGONBARROW_DIVINE_TOWER_OF_CAELID,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 ];

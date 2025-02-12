@@ -12,12 +12,9 @@ export const mountaintopsEdges: EdgeData[] = [
     to: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     metadata: {
       description: "Access via Grand Lift of Rold",
-      requirements: [
-        {
-          type: "item",
-          value: ProgressionItem.ROLD_MEDALLION,
-        },
-      ],
+      requirements: {
+        requiredItems: [ProgressionItem.ROLD_MEDALLION],
+      },
     },
   },
 
@@ -26,7 +23,7 @@ export const mountaintopsEdges: EdgeData[] = [
     from: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     to: Location.MOUNTAINTOPS_CASTLE_SOL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -35,14 +32,14 @@ export const mountaintopsEdges: EdgeData[] = [
     from: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     to: Location.MOUNTAINTOPS_GIANTS_MOUNTAINTOP_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     to: Location.MOUNTAINTOPS_GIANT_CONQUERING_HEROS_GRAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -51,7 +48,7 @@ export const mountaintopsEdges: EdgeData[] = [
     from: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     to: Location.MOUNTAINTOPS_SPIRITCALLERS_CAVE,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 ];
@@ -62,9 +59,12 @@ export const farumAzulaEdges: EdgeData[] = [
   {
     from: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     to: Location.FARUM_AZULA,
+    directed: true,
     metadata: {
       description: "Transported to Farum Azula after burning the Erdtree",
-      requirements: [{ type: "boss", value: Enemy.FIRE_GIANT }],
+      requirements: {
+        requiredBosses: [Enemy.FIRE_GIANT],
+      },
     },
   },
   {
@@ -72,7 +72,7 @@ export const farumAzulaEdges: EdgeData[] = [
     to: Location.FARUM_AZULA_SUB_AREA,
     metadata: {
       description: "Use an Imbued Sword Key on the Crumbling Lands portal",
-      requirements: [], // Might need a requirement for the specific Belfry key
+      requirements: {}, // Might need a requirement for the specific Belfry key
     },
   },
   {
@@ -80,23 +80,33 @@ export const farumAzulaEdges: EdgeData[] = [
     to: Location.FARUM_AZULA,
     directed: true,
     metadata: {
-      requirements: [
-        { type: "glitch", value: Glitch.WRONGWARP, description: "" },
-      ],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.WRONGWARP,
+          description: "",
+        },
+      },
     },
   },
   {
     from: Location.FARUM_AZULA,
     to: Location.FARUM_AZULA_POST_GODSKIN_DUO,
     metadata: {
-      requirements: [{ type: "boss", value: Enemy.GODSKIN_DUO }],
+      requirements: {
+        requiredBosses: [Enemy.GODSKIN_DUO],
+      },
     },
   },
   {
     from: Location.FARUM_AZULA,
     to: Location.FARUM_AZULA_POST_GODSKIN_DUO,
     metadata: {
-      requirements: [{ type: "glitch", value: Glitch.ZIP, description: "" }],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+      },
     },
   },
 ];
@@ -110,12 +120,9 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     metadata: {
       description:
         "Access via secret path at Grand Lift of Rold (Leyndell side)",
-      requirements: [
-        {
-          type: "item",
-          value: ProgressionItem.HALIGTREE_MEDALLION,
-        },
-      ],
+      requirements: {
+        requiredItems: [ProgressionItem.HALIGTREE_MEDALLION],
+      },
     },
   },
   {
@@ -124,19 +131,16 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     metadata: {
       description:
         "Access via secret path at Grand Lift of Rold (Mountaintops side)",
-      requirements: [
-        {
-          type: "item",
-          value: ProgressionItem.HALIGTREE_MEDALLION,
-        },
-      ],
+      requirements: {
+        requiredItems: [ProgressionItem.HALIGTREE_MEDALLION],
+      },
     },
   },
   {
     from: Location.CONSECRATED_SNOWFIELD_HIDDEN_PATH_TO_THE_HALIGTREE,
     to: Location.CONSECRATED_SNOWFIELD,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -144,9 +148,12 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     to: Location.MOUNTAINTOPS_OF_THE_GIANTS,
     directed: true,
     metadata: {
-      requirements: [
-        { type: "glitch", value: Glitch.WRONGWARP, description: "" },
-      ],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.WRONGWARP,
+          description: "",
+        },
+      },
     },
   },
   {
@@ -154,7 +161,12 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     to: Location.CONSECRATED_SNOWFIELD,
     directed: true,
     metadata: {
-      requirements: [{ type: "glitch", value: Glitch.ZIP, description: "" }],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+      },
     },
   },
 
@@ -163,21 +175,21 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     from: Location.CONSECRATED_SNOWFIELD,
     to: Location.CONSECRATED_SNOWFIELD_CAVE_OF_THE_FORLORN,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.CONSECRATED_SNOWFIELD,
     to: Location.CONSECRATED_SNOWFIELD_CATACOMBS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.CONSECRATED_SNOWFIELD,
     to: Location.CONSECRATED_SNOWFIELD_YELOUGH_ANIX_TUNNEL,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -186,7 +198,7 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     from: Location.CONSECRATED_SNOWFIELD,
     to: Location.CONSECRATED_SNOWFIELD_ORDINA_LITURGICAL_TOWN,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -194,7 +206,7 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     to: Location.MIQUELLAS_HALIGTREE,
     metadata: {
       description: "Complete the evergaol seal puzzle to access the portal",
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -203,9 +215,9 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     from: Location.MIQUELLAS_HALIGTREE,
     to: Location.ELPHAEL_BRACE_OF_THE_HALIGTREE,
     metadata: {
-      requirements: [
-        { type: "boss", value: Enemy.LORETTA_KNIGHT_OF_THE_HALIGTREE },
-      ],
+      requirements: {
+        requiredBosses: [Enemy.LORETTA_KNIGHT_OF_THE_HALIGTREE],
+      },
     },
   },
 ];

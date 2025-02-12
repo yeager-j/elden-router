@@ -2,7 +2,7 @@ import { MultiDirectedGraph } from "graphology";
 
 import { EnemyData } from "@workspace/data/enemies";
 import { Flag, FlagData } from "@workspace/data/flags";
-import { GlitchNames } from "@workspace/data/glitches";
+import { Glitch, GlitchNames } from "@workspace/data/glitches";
 import { ProgressionItem, ProgressionItemData } from "@workspace/data/items";
 import {
   QuestlineData,
@@ -10,64 +10,94 @@ import {
   QuestlineStageData,
 } from "@workspace/data/quests";
 
-import { EdgeMetadata, PathSettings, Requirement } from "#types";
+import { EdgeMetadata, PathSettings } from "#types";
 
-export function hasBossRequirement(metadata: EdgeMetadata) {
-  return metadata.requirements.some((req) => req.type === "boss");
+export function hasBossRequirement(
+  metadata: EdgeMetadata,
+): metadata is EdgeMetadata & {
+  requirements: Required<Pick<EdgeMetadata["requirements"], "requiredBosses">>;
+} {
+  return (metadata.requirements.requiredBosses?.length ?? 0) > 0;
 }
 
-export function hasGlitchRequirement(metadata: EdgeMetadata) {
-  return metadata.requirements.some((req) => req.type === "glitch");
+export function hasGlitchRequirement(
+  metadata: EdgeMetadata,
+): metadata is EdgeMetadata & {
+  requirements: Required<Pick<EdgeMetadata["requirements"], "requiredGlitch">>;
+} {
+  return metadata.requirements.requiredGlitch !== undefined;
 }
 
-export function hasItemRequirement(metadata: EdgeMetadata) {
-  return metadata.requirements.some((req) => req.type === "item");
+export function hasItemRequirement(
+  metadata: EdgeMetadata,
+): metadata is EdgeMetadata & {
+  requirements: Required<Pick<EdgeMetadata["requirements"], "requiredItems">>;
+} {
+  return (metadata.requirements.requiredItems?.length ?? 0) > 0;
 }
 
 export function getMissingItems(
   metadata: EdgeMetadata,
   acquiredItems: Set<ProgressionItem>,
 ) {
-  return metadata.requirements
-    .filter((req) => req.type === "item")
-    .find((req) => !acquiredItems.has(req.value))?.value;
+  return metadata.requirements.requiredItems?.find(
+    (req) => !acquiredItems.has(req),
+  );
 }
 
-export function hasQuestRequirement(metadata: EdgeMetadata) {
-  return metadata.requirements.some((req) => req.type === "quest");
+export function hasQuestRequirement(
+  metadata: EdgeMetadata,
+): metadata is EdgeMetadata & {
+  requirements: Required<Pick<EdgeMetadata["requirements"], "requiredQuests">>;
+} {
+  return (metadata.requirements.requiredQuests?.length ?? 0) > 0;
 }
 
 export function getIncompleteQuestlineStage(
   metadata: EdgeMetadata,
   completedStages: Set<QuestlineStage>,
 ) {
-  return metadata.requirements
-    .filter((req) => req.type === "quest")
-    .find((req) => !completedStages.has(req.stage))?.stage;
+  return metadata.requirements.requiredQuests?.find(
+    (req) => !completedStages.has(req),
+  );
 }
 
-export function hasFlagRequirement(metadata: EdgeMetadata) {
-  return metadata.requirements.some((req) => req.type === "flag");
+export function hasEnabledFlagRequirement(
+  metadata: EdgeMetadata,
+): metadata is EdgeMetadata & {
+  requirements: Required<
+    Pick<EdgeMetadata["requirements"], "requiredEnabledFlags">
+  >;
+} {
+  return (metadata.requirements.requiredEnabledFlags?.length ?? 0) > 0;
+}
+
+export function hasDisabledFlagRequirement(
+  metadata: EdgeMetadata,
+): metadata is EdgeMetadata & {
+  requirements: Required<
+    Pick<EdgeMetadata["requirements"], "requiredDisabledFlags">
+  >;
+} {
+  return (metadata.requirements.requiredDisabledFlags?.length ?? 0) > 0;
 }
 
 export function getMissingFlags(
   metadata: EdgeMetadata,
   enabledFlags: Set<Flag>,
 ) {
-  return metadata.requirements
-    .filter((req) => req.type === "flag")
-    .filter((req) => !req.not)
-    .find((req) => !enabledFlags.has(req.value))?.value;
+  return metadata.requirements.requiredEnabledFlags?.find(
+    (req) => !enabledFlags.has(req),
+  );
 }
 
 export function getShouldNotBePresentFlags(
   metadata: EdgeMetadata,
   enabledFlags: Set<Flag>,
 ) {
-  return metadata.requirements
-    .filter((req) => req.type === "flag")
-    .filter((req) => req.not)
-    .find((req) => enabledFlags.has(req.value))?.value;
+  return metadata.requirements.requiredDisabledFlags?.find((req) =>
+    enabledFlags.has(req),
+  );
 }
 
 export function checkEdgeMeetsSettings(
@@ -80,14 +110,14 @@ export function checkEdgeMeetsSettings(
     settings.flagsEnabled,
   );
 
-  if (hasFlagRequirement(attributes) && missingFlag) {
+  if (hasEnabledFlagRequirement(attributes) && missingFlag) {
     return {
       valid: false,
       reason: FlagData[missingFlag].flagMissingMessage,
     };
   }
 
-  if (hasFlagRequirement(attributes) && shouldNotBePresentFlag) {
+  if (hasDisabledFlagRequirement(attributes) && shouldNotBePresentFlag) {
     return {
       valid: false,
       reason: FlagData[shouldNotBePresentFlag].flagPresentMessage,
@@ -95,11 +125,9 @@ export function checkEdgeMeetsSettings(
   }
 
   if (hasBossRequirement(attributes) && !settings.allowBosses) {
-    const bossData = attributes.requirements
-      .filter((req) => req.type === "boss")
-      .map((boss) => {
-        return EnemyData[boss.value].displayName;
-      });
+    const bossData = attributes.requirements.requiredBosses!.map((boss) => {
+      return EnemyData[boss].displayName;
+    });
 
     return {
       valid: false,
@@ -108,13 +136,11 @@ export function checkEdgeMeetsSettings(
   }
 
   if (hasGlitchRequirement(attributes) && !settings.allowGlitches) {
-    const glitch = attributes.requirements.find(
-      (req) => req.type === "glitch",
-    )!;
+    const glitch = attributes.requirements.requiredGlitch.glitch;
 
     return {
       valid: false,
-      reason: `A ${GlitchNames[glitch.value]} is required, but you disallowed glitching.`,
+      reason: `A ${GlitchNames[glitch]} is required, but you disallowed glitching.`,
     };
   }
 
@@ -147,7 +173,7 @@ export function checkEdgeMeetsSettings(
   return { valid: true };
 }
 
-const requirementCostMap: Record<Requirement["type"], number> = {
+const requirementCostMap = {
   boss: 10,
   glitch: 1,
   item: 3,
@@ -156,10 +182,40 @@ const requirementCostMap: Record<Requirement["type"], number> = {
 };
 
 export function getEdgeCost(attributes: EdgeMetadata): number {
-  return attributes.requirements.reduce(
-    (acc, req) => acc + (requirementCostMap[req.type] || 0),
-    0,
-  );
+  let cost = 0;
+
+  if (hasBossRequirement(attributes)) {
+    cost +=
+      attributes.requirements.requiredBosses.length * requirementCostMap.boss;
+  }
+
+  if (hasGlitchRequirement(attributes)) {
+    cost += requirementCostMap.glitch;
+  }
+
+  if (hasItemRequirement(attributes)) {
+    cost +=
+      attributes.requirements.requiredItems.length * requirementCostMap.item;
+  }
+
+  if (hasQuestRequirement(attributes)) {
+    cost +=
+      attributes.requirements.requiredQuests.length * requirementCostMap.quest;
+  }
+
+  if (hasEnabledFlagRequirement(attributes)) {
+    cost +=
+      attributes.requirements.requiredEnabledFlags.length *
+      requirementCostMap.flag;
+  }
+
+  if (hasDisabledFlagRequirement(attributes)) {
+    cost +=
+      attributes.requirements.requiredDisabledFlags.length *
+      requirementCostMap.flag;
+  }
+
+  return cost;
 }
 
 export function getBestEdge(

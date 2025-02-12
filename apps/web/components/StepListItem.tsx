@@ -1,7 +1,6 @@
+import { Step } from "@/lib/convert-route";
 import { Bug, CornerUpRight, Hand, Swords } from "lucide-react";
 import { motion } from "motion/react";
-
-import { Step } from "@/lib/convert-route";
 
 interface StepListItemProps {
   step: Step;

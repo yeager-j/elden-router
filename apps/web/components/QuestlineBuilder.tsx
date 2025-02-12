@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
+import QuestlineStageCard from "@/components/QuestlineStageCard";
 
 import { Separator } from "@workspace/ui/components/separator";
-import { QuestlineStage, QuestlineStageData } from "@workspace/data";
-
-import QuestlineStageCard from "@/components/QuestlineStageCard";
+import { QuestlineStage, QuestlineStageData } from "@workspace/data/quests";
 
 interface QuestlineBuilderProps {
   stage: QuestlineStage;

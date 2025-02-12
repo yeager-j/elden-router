@@ -1,9 +1,9 @@
 import { describe, expect, test } from "vitest";
 
-import { Location } from "@workspace/data";
+import { Location } from "@workspace/data/locations";
 
-import { getPathToDestination } from "@/graph";
-import { PathSettings } from "@/types";
+import { getPathToDestination } from "#graph";
+import { PathSettings } from "#types";
 
 describe("basic connections", () => {
   const config: PathSettings = {

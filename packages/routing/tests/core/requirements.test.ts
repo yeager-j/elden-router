@@ -23,7 +23,7 @@ describe("checkEdgeMeetsSettings", () => {
   };
 
   test("returns valid for an edge with no requirements", () => {
-    const edge: EdgeMetadata = { requirements: [] };
+    const edge: EdgeMetadata = { requirements: {} };
 
     const result = checkEdgeMeetsSettings(mockSettings, edge);
     expect(result).toEqual({ valid: true });
@@ -31,7 +31,9 @@ describe("checkEdgeMeetsSettings", () => {
 
   test("returns invalid for a boss requirement when bosses are disallowed", () => {
     const edge: EdgeMetadata = {
-      requirements: [{ type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN }], // Mock enemy ID
+      requirements: {
+        requiredBosses: [Enemy.MARGIT_THE_FELL_OMEN],
+      },
     };
 
     const result = checkEdgeMeetsSettings(
@@ -47,7 +49,12 @@ describe("checkEdgeMeetsSettings", () => {
 
   test("returns invalid for a glitch requirement when glitches are disallowed", () => {
     const edge: EdgeMetadata = {
-      requirements: [{ type: "glitch", value: Glitch.ZIP, description: "" }], // Mock glitch ID
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+      },
     };
 
     const result = checkEdgeMeetsSettings(
@@ -63,7 +70,9 @@ describe("checkEdgeMeetsSettings", () => {
 
   test("returns invalid for a missing progression item", () => {
     const edge: EdgeMetadata = {
-      requirements: [{ type: "item", value: ProgressionItem.DECTUS_MEDALLION }],
+      requirements: {
+        requiredItems: [ProgressionItem.DECTUS_MEDALLION],
+      },
     };
 
     const result = checkEdgeMeetsSettings(
@@ -79,7 +88,9 @@ describe("checkEdgeMeetsSettings", () => {
 
   test("returns invalid for an incomplete quest requirement", () => {
     const edge: EdgeMetadata = {
-      requirements: [{ type: "quest", stage: QuestlineStage.SELLEN_STAGE_5 }],
+      requirements: {
+        requiredQuests: [QuestlineStage.SELLEN_STAGE_5],
+      },
     };
 
     const result = checkEdgeMeetsSettings(
@@ -95,7 +106,9 @@ describe("checkEdgeMeetsSettings", () => {
 
   test("returns invalid for a missing flag requirement", () => {
     const edge: EdgeMetadata = {
-      requirements: [{ type: "flag", value: Flag.RADAHN_FESTIVAL_ENABLED }],
+      requirements: {
+        requiredEnabledFlags: [Flag.RADAHN_FESTIVAL_ENABLED],
+      },
     };
 
     const result = checkEdgeMeetsSettings(
@@ -112,13 +125,34 @@ describe("checkEdgeMeetsSettings", () => {
     });
   });
 
+  test("returns invalid for a flag requirement that should not be present", () => {
+    const edge: EdgeMetadata = {
+      requirements: {
+        requiredDisabledFlags: [Flag.LEYNDELL_CAPITAL_ASHEN],
+      },
+    };
+
+    const result = checkEdgeMeetsSettings(
+      {
+        ...mockSettings,
+        flagsEnabled: new Set([Flag.LEYNDELL_CAPITAL_ASHEN]),
+      },
+      edge,
+    );
+
+    expect(result).toEqual({
+      valid: false,
+      reason: FlagData[Flag.LEYNDELL_CAPITAL_ASHEN].flagPresentMessage,
+    });
+  });
+
   test("returns valid when all requirements are met", () => {
     const edge: EdgeMetadata = {
-      requirements: [
-        { type: "boss", value: Enemy.MARGIT_THE_FELL_OMEN },
-        { type: "item", value: ProgressionItem.DECTUS_MEDALLION },
-        { type: "flag", value: Flag.RADAHN_FESTIVAL_ENABLED },
-      ],
+      requirements: {
+        requiredBosses: [Enemy.MARGIT_THE_FELL_OMEN],
+        requiredItems: [ProgressionItem.DECTUS_MEDALLION],
+        requiredEnabledFlags: [Flag.RADAHN_FESTIVAL_ENABLED],
+      },
     };
 
     const result = checkEdgeMeetsSettings(mockSettings, edge);

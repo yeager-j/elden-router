@@ -10,21 +10,21 @@ export const ainselRiverEdges: EdgeData[] = [
     from: Location.LIURNIA,
     to: Location.AINSEL_RIVER_WELL_DEPTHS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.AINSEL_RIVER_WELL_DEPTHS,
     to: Location.AINSEL_RIVER_UHL_PALACE_RUINS,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.AINSEL_RIVER_UHL_PALACE_RUINS,
     to: Location.AINSEL_RIVER_DRAGONKIN_ARENA,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
 
@@ -34,7 +34,7 @@ export const ainselRiverEdges: EdgeData[] = [
     to: Location.AINSEL_RIVER_MAIN,
     directed: true,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -42,28 +42,33 @@ export const ainselRiverEdges: EdgeData[] = [
     to: Location.AINSEL_RIVER_MAIN,
     directed: true,
     metadata: {
-      requirements: [{ type: "glitch", value: Glitch.ZIP, description: "" }],
+      requirements: {
+        requiredGlitch: {
+          glitch: Glitch.ZIP,
+          description: "",
+        },
+      },
     },
   },
   {
     from: Location.AINSEL_RIVER_MAIN,
     to: Location.AINSEL_RIVER_NOKSTELLA_ETERNAL_CITY,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.AINSEL_RIVER_NOKSTELLA_ETERNAL_CITY,
     to: Location.AINSEL_RIVER_LAKE_OF_ROT,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
     from: Location.AINSEL_RIVER_LAKE_OF_ROT,
     to: Location.AINSEL_RIVER_GRAND_CLOISTER,
     metadata: {
-      requirements: [],
+      requirements: {},
     },
   },
   {
@@ -72,9 +77,9 @@ export const ainselRiverEdges: EdgeData[] = [
     directed: true,
     metadata: {
       description: "Access via defeating Astel and using the coffin",
-      requirements: [
-        { type: "boss", value: Enemy.ASTEL_NATURALBORN_OF_THE_VOID },
-      ],
+      requirements: {
+        requiredBosses: [Enemy.ASTEL_NATURALBORN_OF_THE_VOID],
+      },
     },
   },
 ];
