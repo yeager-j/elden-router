@@ -77,25 +77,27 @@ export function DestinationRoute(props: DestinationRouteProps) {
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>{itemMetadata.displayName}</DrawerTitle>
-          <BadgeList />
-          <VisuallyHidden>
-            <DrawerDescription>
-              Route to {itemMetadata.displayName}
-            </DrawerDescription>
-          </VisuallyHidden>
-        </DrawerHeader>
+        <div className="flex-1 overflow-y-auto">
+          <DrawerHeader className="text-left">
+            <DrawerTitle>{itemMetadata.displayName}</DrawerTitle>
+            <BadgeList />
+            <VisuallyHidden>
+              <DrawerDescription>
+                Route to {itemMetadata.displayName}
+              </DrawerDescription>
+            </VisuallyHidden>
+          </DrawerHeader>
 
-        <div className="p-4 scroll-auto">
-          <StepList routeData={routeData} stepData={stepData} />
+          <div className="p-4 flex-1">
+            <StepList routeData={routeData} stepData={stepData} />
+          </div>
+
+          <DrawerFooter className="pt-2">
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+          </DrawerFooter>
         </div>
-
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   );

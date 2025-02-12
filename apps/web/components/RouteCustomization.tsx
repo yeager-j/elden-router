@@ -65,13 +65,15 @@ export default function RouteCustomization(props: RouteCustomizationProps) {
       <DrawerTrigger asChild>{children}</DrawerTrigger>
 
       <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>Settings</DrawerTitle>
-          <DrawerDescription>Customize your route</DrawerDescription>
-        </DrawerHeader>
+        <div className="flex-1 overflow-y-auto">
+          <DrawerHeader className="text-left">
+            <DrawerTitle>Settings</DrawerTitle>
+            <DrawerDescription>Customize your route</DrawerDescription>
+          </DrawerHeader>
 
-        <div className="flex flex-col gap-4 p-4">
-          <RouteSettings />
+          <div className="flex flex-col gap-4 p-4">
+            <RouteSettings />
+          </div>
         </div>
       </DrawerContent>
     </Drawer>
@@ -151,7 +153,7 @@ function RouteSettings() {
 
       <div className="flex items-center gap-2">
         <QuestManager>
-          <Button>
+          <Button disabled>
             <ListTodo />
             <span>Configure Questlines</span>
           </Button>
