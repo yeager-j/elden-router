@@ -7,6 +7,8 @@ import { Item, ProgressionItem } from "@workspace/data/items";
 import { Location } from "@workspace/data/locations";
 import { QuestlineStage } from "@workspace/data/quests";
 
+export type BossPreference = "NONE" | "MINIMAL" | "ANY";
+
 export type MultiLocationItemNode = string & {
   __brand: "MultiLocationItemNode";
 };
@@ -29,7 +31,7 @@ export interface PathStep {
 }
 
 export interface PathSettings {
-  allowBosses: boolean;
+  bossPreference: "NONE" | "MINIMAL" | "ANY";
   allowGlitches: boolean;
   acquiredItems: Set<ProgressionItem>;
   completedQuestlineStages: Set<QuestlineStage>;

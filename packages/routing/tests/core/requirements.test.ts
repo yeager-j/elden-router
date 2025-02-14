@@ -15,7 +15,7 @@ import { checkEdgeMeetsSettings } from "#utils/graph-utils";
 
 describe("checkEdgeMeetsSettings", () => {
   const mockSettings: PathSettings = {
-    allowBosses: true,
+    bossPreference: "MINIMAL",
     allowGlitches: true,
     acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
     completedQuestlineStages: new Set([QuestlineStage.SELLEN_STAGE_5]),
@@ -37,7 +37,7 @@ describe("checkEdgeMeetsSettings", () => {
     };
 
     const result = checkEdgeMeetsSettings(
-      { ...mockSettings, allowBosses: false },
+      { ...mockSettings, bossPreference: "NONE" },
       edge,
     );
 

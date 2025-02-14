@@ -12,6 +12,7 @@ const config = {
   theme: {
     extend: {
       fontFamily: {
+        serif: ["var(--font-serif)", ...fontFamily.serif],
         sans: ["var(--font-sans)", ...fontFamily.sans],
         mono: ["var(--font-mono)", ...fontFamily.mono],
       },

@@ -7,8 +7,8 @@ export default async function Page() {
   return (
     <div className="w-full">
       <div className="flex flex-col items-center justify-center">
-        <h1 className="text-5xl sm:text-6xl font-bold text-center mb-5 sm:mb-10">
-          Elden Router
+        <h1 className="text-5xl sm:text-7xl font-serif font-bold text-center mb-5 sm:mb-10">
+          Guidance of Grace
         </h1>
 
         <DestinationSearch destinations={destinations} />

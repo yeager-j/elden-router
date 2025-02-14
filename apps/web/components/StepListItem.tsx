@@ -1,5 +1,5 @@
 import { Step } from "@/lib/convert-route";
-import { Bug, CornerUpRight, Hand, Swords } from "lucide-react";
+import { Bug, CornerUpRight, Hand, MapPin, Swords } from "lucide-react";
 import { motion } from "motion/react";
 
 interface StepListItemProps {
@@ -33,6 +33,8 @@ export default function StepListItem(props: StepListItemProps) {
         return <Hand size={24} />;
       case "GLITCH":
         return <Bug size={24} />;
+      case "START":
+        return <MapPin size={24} />;
     }
   };
 

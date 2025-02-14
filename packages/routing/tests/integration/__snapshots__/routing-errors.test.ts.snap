@@ -40,6 +40,17 @@ exports[`routing errors > Erdtree's Favor +2 is not available unless Leyndell is
 }
 `;
 
+exports[`routing errors > Glintstone Kris requires both the Glintstone Key and Sorceress Sellen's questline 1`] = `
+{
+  "isError": true,
+  "pathSteps": null,
+  "reasons": [
+    "You need the Academy Glintstone Key to proceed.",
+    "You must complete Sorceress Sellen's quest up to Stage 8 - Assist Sellen to proceed.",
+  ],
+}
+`;
+
 exports[`routing errors > Must have Dectus Medallion to enter Altus Plateau bossless 1`] = `
 {
   "isError": true,

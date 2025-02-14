@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, StorageValue } from "zustand/middleware";
 
+import { BossPreference } from "@workspace/routing/types";
 import { Flag } from "@workspace/data/flags";
 import { ProgressionItem } from "@workspace/data/items";
 import { QuestlineStage } from "@workspace/data/quests";
@@ -10,8 +11,8 @@ interface AppState {
   allowGlitches: boolean;
   setAllowGlitches: (value: boolean) => void;
 
-  allowBosses: boolean;
-  setAllowBosses: (value: boolean) => void;
+  bossPreference: BossPreference;
+  setBossPreference: (value: BossPreference) => void;
 
   // Item Settings
   acquiredItems: Set<ProgressionItem>;
@@ -34,8 +35,9 @@ export const useAppStore = create<AppState>()(
       setAllowGlitches: (value: boolean) =>
         set(() => ({ allowGlitches: value })),
 
-      allowBosses: false,
-      setAllowBosses: (value: boolean) => set(() => ({ allowBosses: value })),
+      bossPreference: "MINIMAL",
+      setBossPreference: (value: BossPreference) =>
+        set(() => ({ bossPreference: value })),
 
       // ---------- Item Settings ----------
       acquiredItems: new Set(),

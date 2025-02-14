@@ -42,7 +42,7 @@ interface QuestManagerProps {
   children: ReactNode;
 }
 
-export function QuestManager(props: QuestManagerProps) {
+export default function QuestManager(props: QuestManagerProps) {
   const { children } = props;
   const [activeQuest, setActiveQuest] = useState<Questline>(Questline.SELEN);
   const completedStages = useAppStore((state) => state.completedStages);

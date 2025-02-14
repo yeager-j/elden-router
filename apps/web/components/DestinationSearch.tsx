@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getRoute } from "@/actions/pathfinding";
 import DestinationCard from "@/components/DestinationCard";
-import { DestinationRoute } from "@/components/DestinationRoute";
+import DestinationRoute from "@/components/DestinationRoute";
 import RouteCustomization from "@/components/RouteCustomization";
 import { convertRouteToSteps, Step } from "@/lib/convert-route";
 import { useAppStore } from "@/state/search-preferences";
@@ -23,7 +23,7 @@ export default function DestinationSearch(props: DestinationSearchProps) {
   const { destinations } = props;
 
   const allowGlitches = useAppStore((state) => state.allowGlitches);
-  const allowBosses = useAppStore((state) => state.allowBosses);
+  const bossPreference = useAppStore((state) => state.bossPreference);
   const acquiredItems = useAppStore((state) => state.acquiredItems);
   const completedQuestlineStages = useAppStore(
     (state) => state.completedStages,
@@ -61,7 +61,7 @@ export default function DestinationSearch(props: DestinationSearchProps) {
 
     try {
       const routeResult = await getRoute(item, {
-        allowBosses,
+        bossPreference,
         allowGlitches,
         acquiredItems,
         completedQuestlineStages,

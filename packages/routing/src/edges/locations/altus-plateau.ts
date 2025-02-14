@@ -194,6 +194,7 @@ export const altusPlateauEdges: EdgeData[] = [
   {
     from: Location.ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS,
     to: Location.LEYNDELL_ROYAL_CAPITAL,
+    directed: true,
     metadata: {
       description: "Enter Leyndell after defeating two Shardbearers",
       requirements: {

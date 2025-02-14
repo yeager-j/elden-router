@@ -5,7 +5,13 @@ import { Item } from "@workspace/data/items";
 import { Location } from "@workspace/data/locations";
 
 import { allEdges } from "#edges";
-import { EldenGraph, GetPathResult, PathSettings, PathStep } from "#types";
+import {
+  BossPreference,
+  EldenGraph,
+  GetPathResult,
+  PathSettings,
+  PathStep,
+} from "#types";
 import {
   getPartsFromMultiLocationItem,
   isMultiLocationItemNode,
@@ -61,7 +67,11 @@ export function getPathToDestination(
     }
   });
 
-  const bestPath = findShortestPathToLocation(filteredGraph, destination);
+  const bestPath = findShortestPathToLocation(
+    filteredGraph,
+    destination,
+    settings.bossPreference,
+  );
 
   if (!bestPath) {
     // Path doesn't exist
@@ -106,10 +116,11 @@ function buildGraph(): EldenGraph {
 }
 
 function findShortestPathToLocation(
-  filteredGraph: EldenGraph,
+  graph: EldenGraph,
   destination: Destination,
+  bossPreference: BossPreference,
 ): string[] | null {
-  const destinationNodes = filteredGraph.nodes().filter((node) => {
+  const destinationNodes = graph.nodes().filter((node) => {
     if (isMultiLocationItemNode(node)) {
       const [item] = getPartsFromMultiLocationItem(node);
       return item === destination;
@@ -123,9 +134,16 @@ function findShortestPathToLocation(
 
   for (const destinationNode of destinationNodes) {
     const path = dijkstra.bidirectional(
-      filteredGraph,
+      graph,
       Location.LIMGRAVE,
       destinationNode,
+      (_, attributes) => {
+        if (bossPreference === "ANY") {
+          return 0;
+        }
+
+        return (attributes.requirements.requiredBosses?.length ?? 0) * 100;
+      },
     );
 
     if (path) {
@@ -176,8 +194,7 @@ function constructErrorReason(
   removalReasons: Map<string, string>,
   destination: Location | Item,
 ) {
-  const unfilteredPaths = dijkstra.singleSource(graph, Location.LIMGRAVE);
-  const unfilteredPath = unfilteredPaths[destination];
+  const unfilteredPath = findShortestPathToLocation(graph, destination, "ANY");
 
   if (!unfilteredPath) {
     // There's no path in the unfiltered graph either.

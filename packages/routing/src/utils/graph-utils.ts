@@ -124,7 +124,7 @@ export function checkEdgeMeetsSettings(
     };
   }
 
-  if (hasBossRequirement(attributes) && !settings.allowBosses) {
+  if (hasBossRequirement(attributes) && settings.bossPreference === "NONE") {
     const bossData = attributes.requirements.requiredBosses!.map((boss) => {
       return EnemyData[boss].displayName;
     });

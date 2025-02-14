@@ -7,7 +7,7 @@ import { PathSettings } from "#types";
 
 describe("basic connections", () => {
   const config: PathSettings = {
-    allowBosses: false,
+    bossPreference: "NONE",
     allowGlitches: false,
     acquiredItems: new Set(),
     completedQuestlineStages: new Set(),

@@ -131,7 +131,7 @@ export const EnemyData: Record<Enemy, EnemyMetadata> = {
   },
   [Enemy.RENNALA_QUEEN_OF_THE_FULL_MOON]: {
     displayName: "Rennala, Queen of the Full Moon",
-    shortDescription: "",
+    shortDescription: "Highly resistant vs Magic, weaker vs Physical",
   },
   [Enemy.STARSCOURGE_RADAHN]: {
     displayName: "Starscourge Radahn",
@@ -283,7 +283,8 @@ export const EnemyData: Record<Enemy, EnemyMetadata> = {
   },
   [Enemy.RED_WOLF_OF_RADAGON]: {
     displayName: "Red Wolf of Radagon",
-    shortDescription: "",
+    shortDescription:
+      "Strong vs Magic, weaker vs Physical. Low HP but highly mobile",
   },
   [Enemy.ROYAL_KNIGHT_LORETTA]: {
     displayName: "Royal Knight Loretta",

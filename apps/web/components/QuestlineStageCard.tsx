@@ -76,9 +76,9 @@ export default function QuestlineStageCard(props: QuestlineStageCardProps) {
 
         {metadata.nextStage.length > 1 && (
           <div>
-            <Label>Quest Decision</Label>
+            <Label htmlFor={`stage-${stage}`}>Quest Decision</Label>
             <Select onValueChange={handleQuestDecision} value={questDecision}>
-              <SelectTrigger>
+              <SelectTrigger id={`stage-${stage}`}>
                 <SelectValue placeholder="Make a decision..." />
               </SelectTrigger>
               <SelectContent>

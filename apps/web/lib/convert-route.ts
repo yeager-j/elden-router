@@ -9,9 +9,10 @@ import { Item, ItemData } from "@workspace/data/items";
 import { Location, LocationNames } from "@workspace/data/locations";
 
 export interface Step {
+  id: string;
   title: string;
   description?: string;
-  type: "TRAVEL" | "DEFEAT" | "PICK_UP" | "GLITCH";
+  type: "TRAVEL" | "DEFEAT" | "PICK_UP" | "GLITCH" | "START";
 }
 
 function isStepAnItem(step: GraphNode): step is Item {
@@ -35,6 +36,13 @@ export function convertRouteToSteps(route: GetPathResult) {
     return [];
   }
 
+  steps.push({
+    id: Location.LIMGRAVE,
+    type: "START",
+    title: `Start in ${LocationNames.LIMGRAVE}`,
+    description: "Limgrave is the starting location for all routes.",
+  });
+
   route.pathSteps.forEach((pathStep) => {
     const requirements = pathStep.metadata.requirements;
 
@@ -43,6 +51,7 @@ export function convertRouteToSteps(route: GetPathResult) {
         const bossData = EnemyData[boss];
 
         steps.push({
+          id: `${pathStep.to}.${boss}`,
           type: "DEFEAT",
           title: `Defeat ${bossData.displayName}`,
           description: bossData.shortDescription,
@@ -54,6 +63,7 @@ export function convertRouteToSteps(route: GetPathResult) {
       const glitchName = GlitchNames[requirements.requiredGlitch.glitch];
 
       steps.push({
+        id: `${pathStep.to}.${glitchName}`,
         type: "GLITCH",
         title: `Perform a ${glitchName}`,
         description: requirements.requiredGlitch.description,
@@ -62,6 +72,7 @@ export function convertRouteToSteps(route: GetPathResult) {
 
     if (isStepAnItem(pathStep.to)) {
       steps.push({
+        id: pathStep.to,
         type: "PICK_UP",
         title: `Acquire ${ItemData[pathStep.to].displayName}`,
         description: pathStep.metadata.description,
@@ -70,12 +81,14 @@ export function convertRouteToSteps(route: GetPathResult) {
       const [item] = pathStep.to.split(" - ");
 
       steps.push({
+        id: pathStep.to,
         type: "PICK_UP",
         title: `Acquire ${ItemData[item as Item].displayName}`,
         description: pathStep.metadata.description,
       });
     } else if (isStepALocation(pathStep.to)) {
       steps.push({
+        id: pathStep.to,
         type: "TRAVEL",
         title: `Travel to ${LocationNames[pathStep.to]}`,
         description: pathStep.metadata.description,

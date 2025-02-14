@@ -10,7 +10,7 @@ import { PathSettings } from "#types";
 describe("routing errors", () => {
   test("Cannot enter Stormveil without defeating Margit the Fell", () => {
     const settings: PathSettings = {
-      allowBosses: false,
+      bossPreference: "NONE",
       allowGlitches: false,
       acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
       completedQuestlineStages: new Set(),
@@ -27,7 +27,7 @@ describe("routing errors", () => {
 
   test("Can enter Leyndell bossless, but must allow glitches", () => {
     const settings: PathSettings = {
-      allowBosses: false,
+      bossPreference: "NONE",
       allowGlitches: false,
       acquiredItems: new Set(),
       completedQuestlineStages: new Set(),
@@ -44,7 +44,7 @@ describe("routing errors", () => {
 
   test("Must have Dectus Medallion to enter Altus Plateau bossless", () => {
     const settings: PathSettings = {
-      allowBosses: false,
+      bossPreference: "NONE",
       allowGlitches: false,
       acquiredItems: new Set(),
       completedQuestlineStages: new Set(),
@@ -58,7 +58,7 @@ describe("routing errors", () => {
 
   test("Erdtree's Favor +2 is not available unless Leyndell is ashen", () => {
     const settings: PathSettings = {
-      allowBosses: false,
+      bossPreference: "NONE",
       allowGlitches: false,
       acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
       completedQuestlineStages: new Set(),
@@ -72,7 +72,7 @@ describe("routing errors", () => {
 
   test("Bolt of Gransax is not available when Leyndell is ashen", () => {
     const settings: PathSettings = {
-      allowBosses: true,
+      bossPreference: "MINIMAL",
       allowGlitches: false,
       acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
       completedQuestlineStages: new Set(),
@@ -80,6 +80,20 @@ describe("routing errors", () => {
     };
 
     const route = getPathToDestination(Item.BOLT_OF_GRANSAX, settings);
+
+    expect(route).toMatchSnapshot();
+  });
+
+  test("Glintstone Kris requires both the Glintstone Key and Sorceress Sellen's questline", () => {
+    const settings: PathSettings = {
+      bossPreference: "MINIMAL",
+      allowGlitches: false,
+      acquiredItems: new Set(),
+      completedQuestlineStages: new Set(),
+      flagsEnabled: new Set(),
+    };
+
+    const route = getPathToDestination(Item.GLINTSTONE_KRIS, settings);
 
     expect(route).toMatchSnapshot();
   });

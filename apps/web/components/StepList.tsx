@@ -42,7 +42,7 @@ export default function StepList(props: StepListProps) {
       animate="visible"
     >
       {!routeData.isError &&
-        stepData.map((step) => <StepListItem step={step} key={step.title} />)}
+        stepData.map((step) => <StepListItem step={step} key={step.id} />)}
 
       {routeData.isError && (
         <Alert variant="destructive">

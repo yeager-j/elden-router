@@ -1,9 +1,10 @@
 import * as React from "react";
 import { ReactNode } from "react";
-import { QuestManager } from "@/components/QuestManager";
+import QuestManager from "@/components/QuestManager";
 import { useAppStore } from "@/state/search-preferences";
 import { ListTodo } from "lucide-react";
 
+import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import {
   Dialog,
@@ -23,6 +24,14 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@workspace/ui/components/drawer";
+import { Label } from "@workspace/ui/components/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@workspace/ui/components/select";
 import { Separator } from "@workspace/ui/components/separator";
 import { Switch } from "@workspace/ui/components/switch";
 import { useMediaQuery } from "@workspace/ui/hooks/use-media-query";
@@ -84,8 +93,8 @@ function RouteSettings() {
   const allowGlitches = useAppStore((state) => state.allowGlitches);
   const setAllowGlitches = useAppStore((state) => state.setAllowGlitches);
 
-  const allowBosses = useAppStore((state) => state.allowBosses);
-  const setAllowBosses = useAppStore((state) => state.setAllowBosses);
+  const bossPreference = useAppStore((state) => state.bossPreference);
+  const setBossPreference = useAppStore((state) => state.setBossPreference);
 
   const acquiredItems = useAppStore((state) => state.acquiredItems);
   const toggleItem = useAppStore((state) => state.toggleAcquiredItem);
@@ -95,21 +104,43 @@ function RouteSettings() {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
+        <div>
+          <Label htmlFor="boss-preference">Boss Preference</Label>
+          <Select onValueChange={setBossPreference} value={bossPreference}>
+            <SelectTrigger id="boss-preference">
+              <SelectValue placeholder="Boss Preference" />
+            </SelectTrigger>
+
+            <SelectContent>
+              <SelectItem
+                value="NONE"
+                description="Do not allow bosses in the route"
+              >
+                None
+              </SelectItem>
+              <SelectItem
+                value="MINIMAL"
+                description="Find a route with the minimal number of bosses"
+              >
+                Minimal
+              </SelectItem>
+              <SelectItem
+                value="ANY"
+                description="Find the shortest route regardless of bosses"
+              >
+                Any
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         <Switch
           id="allow-glitches"
           label="Allow Glitches"
           description="If enabled, allows routes involving Wrongwarps and Zip Glitches"
           checked={allowGlitches}
           onCheckedChange={setAllowGlitches}
-        />
-
-        <Switch
-          id="allow-bosses"
-          label="Allow Killing Bosses"
-          description="If disabled, will try to find a route without needing to defeat bosses"
-          checked={allowBosses}
-          onCheckedChange={setAllowBosses}
         />
       </div>
 
@@ -152,16 +183,14 @@ function RouteSettings() {
       <Separator />
 
       <div className="flex items-center gap-2">
+        <Badge variant="secondary">WIP</Badge>
+
         <QuestManager>
-          <Button disabled>
+          <Button>
             <ListTodo />
             <span>Configure Questlines</span>
           </Button>
         </QuestManager>
-
-        <span className="text-sm font-medium text-muted-foreground">
-          Quest Manager coming soon!
-        </span>
       </div>
     </>
   );

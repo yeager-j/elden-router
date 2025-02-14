@@ -9,7 +9,7 @@ import { PathSettings } from "#types";
 
 describe("complex connections", () => {
   const config: PathSettings = {
-    allowBosses: true,
+    bossPreference: "MINIMAL",
     allowGlitches: false,
     acquiredItems: new Set([
       ProgressionItem.DECTUS_MEDALLION,

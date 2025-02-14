@@ -34,7 +34,7 @@ interface DestinationRouteProps {
   setIsOpen: (isOpen: boolean) => void;
 }
 
-export function DestinationRoute(props: DestinationRouteProps) {
+export default function DestinationRoute(props: DestinationRouteProps) {
   const { destination, routeData, stepData, isOpen, setIsOpen } = props;
   const isDesktop = useMediaQuery("(min-width: 768px)");
 

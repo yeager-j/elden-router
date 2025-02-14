@@ -1,6 +1,7 @@
 import { Enemy } from "@workspace/data/enemies";
 import { Item } from "@workspace/data/items";
 import { Location } from "@workspace/data/locations";
+import { QuestlineStage } from "@workspace/data/quests";
 
 import { EdgeData } from "#types";
 import { convertItemLocationsToEdges } from "#utils/edge-utils";
@@ -222,7 +223,10 @@ const glinstoneKrisLocations: EdgeData[] = convertItemLocationsToEdges({
       metadata: {
         description:
           "Given by Sorceress Sellen after siding with her against Jerren",
-        requirements: {},
+        requirements: {
+          requiredBosses: [Enemy.RENNALA_QUEEN_OF_THE_FULL_MOON],
+          requiredQuests: [QuestlineStage.SELLEN_STAGE_8_A],
+        },
       },
     },
   ],
@@ -234,7 +238,8 @@ const reduviaLocations: EdgeData[] = convertItemLocationsToEdges({
     {
       location: Location.LIMGRAVE,
       metadata: {
-        description: "Dropped by Bloody Finger Nerijus.",
+        description:
+          "Dropped by Bloody Finger Nerijus, who invades near Murkwater Cave",
         requirements: {},
       },
     },
