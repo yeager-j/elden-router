@@ -138,7 +138,7 @@ function findShortestPathToLocation(
       Location.LIMGRAVE,
       destinationNode,
       (_, attributes) => {
-        if (bossPreference === "ANY") {
+        if (bossPreference === BossPreference.ANY) {
           return 0;
         }
 
@@ -194,7 +194,11 @@ function constructErrorReason(
   removalReasons: Map<string, string>,
   destination: Location | Item,
 ) {
-  const unfilteredPath = findShortestPathToLocation(graph, destination, "ANY");
+  const unfilteredPath = findShortestPathToLocation(
+    graph,
+    destination,
+    BossPreference.ANY,
+  );
 
   if (!unfilteredPath) {
     // There's no path in the unfiltered graph either.
