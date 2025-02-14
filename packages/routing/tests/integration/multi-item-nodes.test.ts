@@ -3,11 +3,11 @@ import { describe, expect, test } from "vitest";
 import { Item, ProgressionItem } from "@workspace/data/items";
 
 import { getPathToDestination } from "#graph";
-import { PathSettings } from "#types";
+import { BossPreference, PathSettings } from "#types";
 
 describe("multi-location items", () => {
   const config: PathSettings = {
-    bossPreference: "MINIMAL",
+    bossPreference: BossPreference.MINIMAL,
     allowGlitches: true,
     acquiredItems: new Set([
       ProgressionItem.DECTUS_MEDALLION,

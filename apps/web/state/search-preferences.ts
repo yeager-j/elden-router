@@ -35,7 +35,7 @@ export const useAppStore = create<AppState>()(
       setAllowGlitches: (value: boolean) =>
         set(() => ({ allowGlitches: value })),
 
-      bossPreference: "MINIMAL",
+      bossPreference: BossPreference.MINIMAL,
       setBossPreference: (value: BossPreference) =>
         set(() => ({ bossPreference: value })),
 

@@ -7,7 +7,34 @@ import { Item, ProgressionItem } from "@workspace/data/items";
 import { Location } from "@workspace/data/locations";
 import { QuestlineStage } from "@workspace/data/quests";
 
-export type BossPreference = "NONE" | "MINIMAL" | "ANY";
+export enum BossPreference {
+  NONE = "NONE",
+  MINIMAL = "MINIMAL",
+  ANY = "ANY",
+}
+
+interface BossPreferenceMetadata {
+  displayName: string;
+  description: string;
+}
+
+export const BossPreferenceData: Record<
+  BossPreference,
+  BossPreferenceMetadata
+> = {
+  [BossPreference.NONE]: {
+    displayName: "None",
+    description: "Do not allow bosses in the route",
+  },
+  [BossPreference.MINIMAL]: {
+    displayName: "Minimal",
+    description: "Find a route with the minimal number of bosses",
+  },
+  [BossPreference.ANY]: {
+    displayName: "Any",
+    description: "Find the shortest route regardless of bosses",
+  },
+};
 
 export type MultiLocationItemNode = string & {
   __brand: "MultiLocationItemNode";
@@ -31,7 +58,7 @@ export interface PathStep {
 }
 
 export interface PathSettings {
-  bossPreference: "NONE" | "MINIMAL" | "ANY";
+  bossPreference: BossPreference;
   allowGlitches: boolean;
   acquiredItems: Set<ProgressionItem>;
   completedQuestlineStages: Set<QuestlineStage>;

@@ -5,12 +5,12 @@ import { Item, ProgressionItem } from "@workspace/data/items";
 import { Location } from "@workspace/data/locations";
 
 import { getPathToDestination } from "#graph";
-import { PathSettings } from "#types";
+import { BossPreference, PathSettings } from "#types";
 
 describe("routing errors", () => {
   test("Cannot enter Stormveil without defeating Margit the Fell", () => {
     const settings: PathSettings = {
-      bossPreference: "NONE",
+      bossPreference: BossPreference.NONE,
       allowGlitches: false,
       acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
       completedQuestlineStages: new Set(),
@@ -27,7 +27,7 @@ describe("routing errors", () => {
 
   test("Can enter Leyndell bossless, but must allow glitches", () => {
     const settings: PathSettings = {
-      bossPreference: "NONE",
+      bossPreference: BossPreference.NONE,
       allowGlitches: false,
       acquiredItems: new Set(),
       completedQuestlineStages: new Set(),
@@ -44,7 +44,7 @@ describe("routing errors", () => {
 
   test("Must have Dectus Medallion to enter Altus Plateau bossless", () => {
     const settings: PathSettings = {
-      bossPreference: "NONE",
+      bossPreference: BossPreference.NONE,
       allowGlitches: false,
       acquiredItems: new Set(),
       completedQuestlineStages: new Set(),
@@ -58,7 +58,7 @@ describe("routing errors", () => {
 
   test("Erdtree's Favor +2 is not available unless Leyndell is ashen", () => {
     const settings: PathSettings = {
-      bossPreference: "NONE",
+      bossPreference: BossPreference.NONE,
       allowGlitches: false,
       acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
       completedQuestlineStages: new Set(),
@@ -72,7 +72,7 @@ describe("routing errors", () => {
 
   test("Bolt of Gransax is not available when Leyndell is ashen", () => {
     const settings: PathSettings = {
-      bossPreference: "MINIMAL",
+      bossPreference: BossPreference.MINIMAL,
       allowGlitches: false,
       acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
       completedQuestlineStages: new Set(),
@@ -86,7 +86,7 @@ describe("routing errors", () => {
 
   test("Glintstone Kris requires both the Glintstone Key and Sorceress Sellen's questline", () => {
     const settings: PathSettings = {
-      bossPreference: "MINIMAL",
+      bossPreference: BossPreference.MINIMAL,
       allowGlitches: false,
       acquiredItems: new Set(),
       completedQuestlineStages: new Set(),

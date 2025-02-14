@@ -23,7 +23,7 @@ import {
   DrawerTitle,
 } from "@workspace/ui/components/drawer";
 import { useMediaQuery } from "@workspace/ui/hooks/use-media-query";
-import { GetPathResult } from "@workspace/routing/types";
+import { BossPreferenceData, GetPathResult } from "@workspace/routing/types";
 import { Item, ItemData } from "@workspace/data/items";
 
 interface DestinationRouteProps {
@@ -39,14 +39,14 @@ export default function DestinationRoute(props: DestinationRouteProps) {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const allowGlitches = useAppStore((state) => state.allowGlitches);
-  const allowBosses = useAppStore((state) => state.allowBosses);
+  const bossPreference = useAppStore((state) => state.bossPreference);
 
   const itemMetadata = ItemData[destination];
 
   const BadgeList = () => (
     <div className="flex gap-2">
-      <Badge variant={allowBosses ? "default" : "secondary"}>
-        Killing Bosses {allowBosses ? "Allowed" : "Disallowed"}
+      <Badge variant={bossPreference === "NONE" ? "secondary" : "default"}>
+        Bosses - {BossPreferenceData[bossPreference].displayName}
       </Badge>
       <Badge variant={allowGlitches ? "default" : "secondary"}>
         Glitches {allowGlitches ? "Allowed" : "Disallowed"}

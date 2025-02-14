@@ -5,11 +5,11 @@ import { Item, ProgressionItem } from "@workspace/data/items";
 import { Location } from "@workspace/data/locations";
 
 import { getPathToDestination } from "#graph";
-import { PathSettings } from "#types";
+import { BossPreference, PathSettings } from "#types";
 
 describe("complex connections", () => {
   const config: PathSettings = {
-    bossPreference: "MINIMAL",
+    bossPreference: BossPreference.MINIMAL,
     allowGlitches: false,
     acquiredItems: new Set([
       ProgressionItem.DECTUS_MEDALLION,

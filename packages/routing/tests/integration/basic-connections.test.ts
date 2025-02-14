@@ -3,11 +3,11 @@ import { describe, expect, test } from "vitest";
 import { Location } from "@workspace/data/locations";
 
 import { getPathToDestination } from "#graph";
-import { PathSettings } from "#types";
+import { BossPreference, PathSettings } from "#types";
 
 describe("basic connections", () => {
   const config: PathSettings = {
-    bossPreference: "NONE",
+    bossPreference: BossPreference.NONE,
     allowGlitches: false,
     acquiredItems: new Set(),
     completedQuestlineStages: new Set(),

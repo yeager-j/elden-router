@@ -10,12 +10,12 @@ import {
   QuestlineStageData,
 } from "@workspace/data/quests";
 
-import { EdgeMetadata, PathSettings } from "#types";
+import { BossPreference, EdgeMetadata, PathSettings } from "#types";
 import { checkEdgeMeetsSettings } from "#utils/graph-utils";
 
 describe("checkEdgeMeetsSettings", () => {
   const mockSettings: PathSettings = {
-    bossPreference: "MINIMAL",
+    bossPreference: BossPreference.MINIMAL,
     allowGlitches: true,
     acquiredItems: new Set([ProgressionItem.DECTUS_MEDALLION]),
     completedQuestlineStages: new Set([QuestlineStage.SELLEN_STAGE_5]),
@@ -37,7 +37,7 @@ describe("checkEdgeMeetsSettings", () => {
     };
 
     const result = checkEdgeMeetsSettings(
-      { ...mockSettings, bossPreference: "NONE" },
+      { ...mockSettings, bossPreference: BossPreference.NONE },
       edge,
     );
 

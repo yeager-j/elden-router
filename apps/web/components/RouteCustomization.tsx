@@ -35,6 +35,7 @@ import {
 import { Separator } from "@workspace/ui/components/separator";
 import { Switch } from "@workspace/ui/components/switch";
 import { useMediaQuery } from "@workspace/ui/hooks/use-media-query";
+import { BossPreference, BossPreferenceData } from "@workspace/routing/types";
 import { Flag, FlagData } from "@workspace/data/flags";
 import { ProgressionItem, ProgressionItemData } from "@workspace/data/items";
 
@@ -113,24 +114,15 @@ function RouteSettings() {
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem
-                value="NONE"
-                description="Do not allow bosses in the route"
-              >
-                None
-              </SelectItem>
-              <SelectItem
-                value="MINIMAL"
-                description="Find a route with the minimal number of bosses"
-              >
-                Minimal
-              </SelectItem>
-              <SelectItem
-                value="ANY"
-                description="Find the shortest route regardless of bosses"
-              >
-                Any
-              </SelectItem>
+              {Object.values(BossPreference).map((bossPreference) => (
+                <SelectItem
+                  key={bossPreference}
+                  value={bossPreference}
+                  description={BossPreferenceData[bossPreference].description}
+                >
+                  {BossPreferenceData[bossPreference].displayName}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
