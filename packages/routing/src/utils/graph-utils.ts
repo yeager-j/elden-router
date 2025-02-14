@@ -2,7 +2,7 @@ import { MultiDirectedGraph } from "graphology";
 
 import { EnemyData } from "@workspace/data/enemies";
 import { Flag, FlagData } from "@workspace/data/flags";
-import { Glitch, GlitchNames } from "@workspace/data/glitches";
+import { GlitchNames } from "@workspace/data/glitches";
 import { ProgressionItem, ProgressionItemData } from "@workspace/data/items";
 import {
   QuestlineData,
@@ -232,7 +232,7 @@ export function getBestEdge(
   });
 
   if (!edgesWithAttributes[0]) {
-    throw new Error("No edges found");
+    throw new Error(`No edges found`);
   }
 
   return edgesWithAttributes[0].key;

@@ -1,3 +1,4 @@
+import { consumableLocations } from "#edges/items/consumables";
 import { incantationLocations } from "#edges/items/incantations";
 import { keyItemLocations } from "#edges/items/key-items";
 import { sorceryLocations } from "#edges/items/sorceries";
@@ -10,4 +11,5 @@ export const allItems = [
   ...sorceryLocations,
   ...keyItemLocations,
   ...incantationLocations,
+  ...consumableLocations,
 ];

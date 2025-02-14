@@ -5,7 +5,6 @@ import { Loader2 } from "lucide-react";
 import { Badge } from "@workspace/ui/components/badge";
 import { Button } from "@workspace/ui/components/button";
 import { Item, ItemData, ItemTypeNames } from "@workspace/data/items";
-import { Location, LocationNames } from "@workspace/data/locations";
 
 interface DestinationCardProps {
   item: Item;
@@ -25,9 +24,9 @@ export default function DestinationCard(props: DestinationCardProps) {
 
         <div className="flex gap-1">
           <Badge>{ItemTypeNames[itemMetadata.itemType]}</Badge>
-          <Badge variant="secondary">
-            {LocationNames[itemMetadata.location as Location]}
-          </Badge>
+          {itemMetadata.itemSubtype && (
+            <Badge variant="secondary">{itemMetadata.itemSubtype}</Badge>
+          )}
         </div>
       </div>
 

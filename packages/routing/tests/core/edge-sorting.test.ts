@@ -8,7 +8,7 @@ import { ProgressionItem } from "@workspace/data/items";
 import { QuestlineStage } from "@workspace/data/quests";
 
 import { EdgeMetadata } from "#types";
-import { getBestEdge, getEdgeCost } from "#utils";
+import { getBestEdge, getEdgeCost } from "#utils/graph-utils";
 
 describe("edge sort logic", () => {
   test("getEdgeCost: calculates correct cost for various edge requirements", () => {

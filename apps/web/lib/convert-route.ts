@@ -1,4 +1,8 @@
-import { GetPathResult } from "@workspace/routing/types";
+import {
+  GetPathResult,
+  GraphNode,
+  MultiLocationItemNode,
+} from "@workspace/routing/types";
 import { EnemyData } from "@workspace/data/enemies";
 import { GlitchNames } from "@workspace/data/glitches";
 import { Item, ItemData } from "@workspace/data/items";
@@ -10,11 +14,17 @@ export interface Step {
   type: "TRAVEL" | "DEFEAT" | "PICK_UP" | "GLITCH";
 }
 
-function isStepAnItem(step: Location | Item): step is Item {
+function isStepAnItem(step: GraphNode): step is Item {
   return Object.values(Item).includes(step as Item);
 }
 
-function isStepALocation(step: Location | Item): step is Location {
+function isStepAMultiLocationItem(
+  step: GraphNode,
+): step is MultiLocationItemNode {
+  return step.toString().includes(" - ");
+}
+
+function isStepALocation(step: GraphNode): step is Location {
   return Object.values(Location).includes(step as Location);
 }
 
@@ -54,6 +64,14 @@ export function convertRouteToSteps(route: GetPathResult) {
       steps.push({
         type: "PICK_UP",
         title: `Acquire ${ItemData[pathStep.to].displayName}`,
+        description: pathStep.metadata.description,
+      });
+    } else if (isStepAMultiLocationItem(pathStep.to)) {
+      const [item] = pathStep.to.split(" - ");
+
+      steps.push({
+        type: "PICK_UP",
+        title: `Acquire ${ItemData[item as Item].displayName}`,
         description: pathStep.metadata.description,
       });
     } else if (isStepALocation(pathStep.to)) {

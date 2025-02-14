@@ -1,6 +1,9 @@
+import { getDestinations } from "@/actions/pathfinding";
 import DestinationSearch from "@/components/DestinationSearch";
 
-export default function Page() {
+export default async function Page() {
+  const destinations = await getDestinations();
+
   return (
     <div className="w-full">
       <div className="flex flex-col items-center justify-center">
@@ -8,7 +11,7 @@ export default function Page() {
           Elden Router
         </h1>
 
-        <DestinationSearch />
+        <DestinationSearch destinations={destinations} />
       </div>
     </div>
   );

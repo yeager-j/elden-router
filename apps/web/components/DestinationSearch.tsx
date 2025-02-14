@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getRoute } from "@/actions/pathfinding";
 import DestinationCard from "@/components/DestinationCard";
 import { DestinationRoute } from "@/components/DestinationRoute";
@@ -15,7 +15,13 @@ import { toast } from "@workspace/ui/components/sonner";
 import { GetPathResult } from "@workspace/routing/types";
 import { Item, ItemData, ItemMetadata } from "@workspace/data/items";
 
-export default function DestinationSearch() {
+interface DestinationSearchProps {
+  destinations: Item[];
+}
+
+export default function DestinationSearch(props: DestinationSearchProps) {
+  const { destinations } = props;
+
   const allowGlitches = useAppStore((state) => state.allowGlitches);
   const allowBosses = useAppStore((state) => state.allowBosses);
   const acquiredItems = useAppStore((state) => state.acquiredItems);
@@ -32,12 +38,22 @@ export default function DestinationSearch() {
   const [routeData, setRouteData] = useState<GetPathResult>();
   const [stepData, setStepData] = useState<Step[]>();
 
-  const searchResults = Object.entries(ItemData).filter(([, metadata]) =>
-    metadata.displayName.toLowerCase().includes(search.toLowerCase()),
-  ) as [Item, ItemMetadata][];
+  const [searchResults, setSearchResults] = useState<[Item, ItemMetadata][]>(
+    [],
+  );
 
   const displayedSearchResults = searchResults.slice(0, 4);
   const remainingSearchResults = searchResults.slice(4);
+
+  useEffect(() => {
+    setSearchResults(
+      Object.entries(ItemData)
+        .filter(([item]) => destinations.includes(item as Item))
+        .filter(([, metadata]) =>
+          metadata.displayName.toLowerCase().includes(search.toLowerCase()),
+        ) as [Item, ItemMetadata][],
+    );
+  }, [destinations, search]);
 
   async function handleItemSelect(item: Item) {
     setIsLoading(true);

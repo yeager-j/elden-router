@@ -15,7 +15,7 @@ import {
   hasGlitchRequirement,
   hasItemRequirement,
   hasQuestRequirement,
-} from "#utils";
+} from "#utils/graph-utils";
 
 describe("requirement utils", () => {
   test("hasBossRequirement: returns true when there is a boss requirement", () => {

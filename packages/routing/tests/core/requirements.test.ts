@@ -11,7 +11,7 @@ import {
 } from "@workspace/data/quests";
 
 import { EdgeMetadata, PathSettings } from "#types";
-import { checkEdgeMeetsSettings } from "#utils";
+import { checkEdgeMeetsSettings } from "#utils/graph-utils";
 
 describe("checkEdgeMeetsSettings", () => {
   const mockSettings: PathSettings = {
