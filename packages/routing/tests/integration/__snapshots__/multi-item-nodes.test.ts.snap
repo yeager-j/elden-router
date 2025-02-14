@@ -1,0 +1,86 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`multi-location items > Finds the fastest way to a Somber Smithing Stone 4 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "requirements": {},
+      },
+      "to": "CAELID",
+    },
+    {
+      "from": "CAELID",
+      "metadata": {
+        "requirements": {},
+      },
+      "to": "SOMBER_SMITHING_STONE_4 - CAELID",
+    },
+  ],
+  "reasons": [],
+}
+`;
+
+exports[`multi-location items > Finds the fastest way to a Somber Smithing Stone 7 1`] = `
+{
+  "isError": false,
+  "pathSteps": [
+    {
+      "from": "LIMGRAVE",
+      "metadata": {
+        "description": "Take the shortcut near Stormveil Castle",
+        "requirements": {},
+      },
+      "to": "LIURNIA",
+    },
+    {
+      "from": "LIURNIA",
+      "metadata": {
+        "description": "Access via Grand Lift of Dectus",
+        "requirements": {
+          "requiredItems": [
+            "DECTUS_MEDALLION",
+          ],
+        },
+      },
+      "to": "ALTUS_PLATEAU",
+    },
+    {
+      "from": "ALTUS_PLATEAU",
+      "metadata": {
+        "requirements": {},
+      },
+      "to": "MT_GELMIR",
+    },
+    {
+      "from": "MT_GELMIR",
+      "metadata": {
+        "requirements": {},
+      },
+      "to": "MT_GELMIR_VOLCANO_MANOR",
+    },
+    {
+      "from": "MT_GELMIR_VOLCANO_MANOR",
+      "metadata": {
+        "description": "Area after Temple of Eiglay",
+        "requirements": {
+          "requiredBosses": [
+            "GODSKIN_NOBLE",
+          ],
+        },
+      },
+      "to": "MT_GELMIR_VOLCANO_MANOR_POST_EIGLAY",
+    },
+    {
+      "from": "MT_GELMIR_VOLCANO_MANOR_POST_EIGLAY",
+      "metadata": {
+        "requirements": {},
+      },
+      "to": "SOMBER_SMITHING_STONE_7 - MT_GELMIR_VOLCANO_MANOR_POST_EIGLAY",
+    },
+  ],
+  "reasons": [],
+}
+`;
