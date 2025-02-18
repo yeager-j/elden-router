@@ -15,7 +15,7 @@ exports[`complex connections > Limgrave -> Ashen Leyndell -> Rivers of Blood 1`]
     {
       "from": "LIURNIA",
       "metadata": {
-        "description": "Access via Grand Lift of Dectus",
+        "description": "Access Altus Plateau via Grand Lift of Dectus",
         "requirements": {
           "requiredItems": [
             "DECTUS_MEDALLION",
@@ -34,7 +34,7 @@ exports[`complex connections > Limgrave -> Ashen Leyndell -> Rivers of Blood 1`]
     {
       "from": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
       "metadata": {
-        "description": "Capital turns to ash after defeating Maliketh",
+        "description": "Leyndell turns to ash after defeating Maliketh",
         "requirements": {
           "requiredEnabledFlags": [
             "LEYNDELL_CAPITAL_ASHEN",
@@ -94,7 +94,7 @@ exports[`complex connections > Limgrave -> Fractured Marika 1`] = `
     {
       "from": "LIURNIA",
       "metadata": {
-        "description": "Access via Grand Lift of Dectus",
+        "description": "Access Altus Plateau via Grand Lift of Dectus",
         "requirements": {
           "requiredItems": [
             "DECTUS_MEDALLION",
@@ -113,7 +113,7 @@ exports[`complex connections > Limgrave -> Fractured Marika 1`] = `
     {
       "from": "ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS",
       "metadata": {
-        "description": "Capital turns to ash after defeating Maliketh",
+        "description": "Leyndell turns to ash after defeating Maliketh",
         "requirements": {
           "requiredEnabledFlags": [
             "LEYNDELL_CAPITAL_ASHEN",
@@ -164,7 +164,7 @@ exports[`complex connections > Limgrave -> Somberstone Miner's Bell Bearing (5) 
     {
       "from": "LIURNIA",
       "metadata": {
-        "description": "Access via Grand Lift of Dectus",
+        "description": "Access Altus Plateau via Grand Lift of Dectus",
         "requirements": {
           "requiredItems": [
             "DECTUS_MEDALLION",
@@ -270,7 +270,7 @@ exports[`complex connections > Limgrave -> Triple Rings of Light 1`] = `
     {
       "from": "LIURNIA",
       "metadata": {
-        "description": "Access via Grand Lift of Dectus",
+        "description": "Access Altus Plateau via Grand Lift of Dectus",
         "requirements": {
           "requiredItems": [
             "DECTUS_MEDALLION",
@@ -291,7 +291,7 @@ exports[`complex connections > Limgrave -> Triple Rings of Light 1`] = `
       "metadata": {
         "requirements": {
           "requiredGlitch": {
-            "description": "",
+            "description": "The setup for this zip is a little complicated, so watching a YouTube video is advised",
             "glitch": "ZIP",
           },
         },
@@ -308,7 +308,7 @@ exports[`complex connections > Limgrave -> Triple Rings of Light 1`] = `
     {
       "from": "CONSECRATED_SNOWFIELD_ORDINA_LITURGICAL_TOWN",
       "metadata": {
-        "description": "Complete the evergaol seal puzzle to access the portal",
+        "description": "Complete the Evergaol seal puzzle to access the portal. The Sentry's Torch can be used to see hidden enemies",
         "requirements": {},
       },
       "to": "MIQUELLAS_HALIGTREE",

@@ -25,7 +25,8 @@ export const siofraRiverEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.NOKRON_ETERNAL_CITY,
     metadata: {
-      description: "Access after stars fall",
+      description:
+        "After defeating Radahn, a meteor will fall in Limgrave unlocking the path to Nokron",
       requirements: {
         requiredEnabledFlags: [Flag.RADAHN_DEFEATED],
       },
@@ -37,8 +38,8 @@ export const siofraRiverEdges: EdgeData[] = [
     from: Location.LIURNIA_FOUR_BELFRIES,
     to: Location.NOKRON_SUB_AREA,
     metadata: {
-      description: "Return to the starting area via portal",
-      requirements: {}, // Might need Imbued Sword Key requirement
+      description: "Use an Imbued Sword Key on the Night Sky Unceasing portal",
+      requirements: {},
     },
   },
   {
@@ -98,7 +99,8 @@ export const siofraRiverEdges: EdgeData[] = [
     to: Location.MOHGWYN_PALACE,
     directed: true,
     metadata: {
-      description: "Portal near blood lake",
+      description:
+        "Use the teleporter north of Yelough Anix Ruins after defeating the invading Sanguine Noble",
       requirements: {},
     },
   },

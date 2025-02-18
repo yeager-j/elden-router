@@ -26,7 +26,7 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID,
     to: Location.CAELID_REDMANE_CASTLE_FESTIVAL,
     metadata: {
-      description: "Castle transforms into festival grounds",
+      description: "Redmane Castle's layout changes during the Radahn Festival",
       requirements: {
         requiredEnabledFlags: [Flag.RADAHN_FESTIVAL_ENABLED],
       },
@@ -45,7 +45,7 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID_REDMANE_CASTLE_FESTIVAL,
     to: Location.CAELID_WAILING_DUNES,
     metadata: {
-      description: "Arena where you fight Radahn",
+      description: "The massive desert where you fight Radahn",
       requirements: {},
     },
   },
@@ -53,7 +53,7 @@ export const caelidEdges: EdgeData[] = [
     from: Location.CAELID_WAILING_DUNES,
     to: Location.CAELID_WAR_DEAD_CATACOMBS,
     metadata: {
-      description: "Only accessible after defeating Radahn",
+      description: "After defeating Radahn, head north-west towards the cliffs",
       requirements: {
         requiredBosses: [Enemy.STARSCOURGE_RADAHN],
       },

@@ -20,7 +20,11 @@ import { checkEdgeMeetsSettings, getBestEdge } from "#utils/graph-utils";
 
 type Destination = Item | Location;
 
-// Returns items that have been placed into the graph
+/**
+ * Retrieves a list of possible destination items by analyzing a graph and identifying specific nodes.
+ *
+ * @return {Item[]} An array of unique items that represent possible destinations extracted from the graph.
+ */
 export function getPossibleDestinations(): Item[] {
   const graph = buildGraph();
 
@@ -43,6 +47,13 @@ export function getPossibleDestinations(): Item[] {
   return Array.from(items);
 }
 
+/**
+ * Determines the optimal path to a specified destination based on the provided settings.
+ *
+ * @param {Destination} destination - The destination to which the path is being calculated.
+ * @param {PathSettings} settings - The configuration settings that influence path calculation, such as preferences and constraints.
+ * @return {GetPathResult} Returns the result of the pathfinding operation, which includes the calculated path or an error reason if no suitable path exists.
+ */
 export function getPathToDestination(
   destination: Destination,
   settings: PathSettings,
@@ -87,6 +98,15 @@ export function getPathToDestination(
   return constructPath(bestPath, filteredGraph);
 }
 
+/**
+ * Constructs and returns a graph based on a set of edges, adding nodes and edges appropriately.
+ *
+ * This method initializes a new graph and processes a collection of edges to determine the
+ * nodes and connections between them. Nodes are added to the graph, and edges are created
+ * as directed or undirected based on the edge metadata.
+ *
+ * @return {EldenGraph} A graph containing all nodes and edges as specified by the input data.
+ */
 function buildGraph(): EldenGraph {
   const graph: EldenGraph = new MultiGraph();
 
@@ -115,6 +135,14 @@ function buildGraph(): EldenGraph {
   return graph;
 }
 
+/**
+ * Finds the shortest path to a specified destination node within the given graph.
+ *
+ * @param {EldenGraph} graph - The graph representing the interconnected locations and paths.
+ * @param {Destination} destination - The target destination to which the shortest path is to be found.
+ * @param {BossPreference} bossPreference - The preferred boss-related criteria to influence the pathfinding cost calculation.
+ * @return {string[] | null} - The shortest path as an array of node names, or null if no path exists.
+ */
 function findShortestPathToLocation(
   graph: EldenGraph,
   destination: Destination,
@@ -162,7 +190,17 @@ function findShortestPathToLocation(
   return bestPath;
 }
 
-function constructPath(path: string[], filteredGraph: EldenGraph) {
+/**
+ * Constructs a path object containing steps and metadata based on the provided path and graph.
+ *
+ * @param {string[]} path - An array of strings representing the ordered nodes in the path.
+ * @param {EldenGraph} filteredGraph - The graph object containing nodes and edges with associated attributes.
+ * @return {GetPathResult} An object containing the constructed path steps, an error flag, and a list of reasons for errors if any.
+ */
+function constructPath(
+  path: string[],
+  filteredGraph: EldenGraph,
+): GetPathResult {
   const pathSteps: PathStep[] = [];
 
   for (let i = 0; i < path.length - 1; i++) {
@@ -188,12 +226,23 @@ function constructPath(path: string[], filteredGraph: EldenGraph) {
   };
 }
 
+/**
+ * Constructs an error reason based on the provided graph, filtered graph, removal reasons, and destination.
+ * It identifies why a path cannot be constructed, highlighting restrictions or missing connections.
+ *
+ * @param {EldenGraph} graph The complete graph containing all nodes and edges.
+ * @param {EldenGraph} filteredGraph The graph with certain edges or nodes removed due to constraints.
+ * @param {Map<string, string>} removalReasons A map of edges to their associated removal reasons (e.g., restrictions or requirements).
+ * @param {Location | Item} destination The target destination for which the path is to be calculated.
+ * @return {GetPathResult} An object containing the error state, an optional path (null in error state),
+ *                          and a list of reasons explaining why no path exists or is valid.
+ */
 function constructErrorReason(
   graph: EldenGraph,
   filteredGraph: EldenGraph,
   removalReasons: Map<string, string>,
   destination: Location | Item,
-) {
+): GetPathResult {
   const unfilteredPath = findShortestPathToLocation(
     graph,
     destination,

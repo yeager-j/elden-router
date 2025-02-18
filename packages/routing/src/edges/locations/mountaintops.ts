@@ -72,7 +72,7 @@ export const farumAzulaEdges: EdgeData[] = [
     to: Location.FARUM_AZULA_SUB_AREA,
     metadata: {
       description: "Use an Imbued Sword Key on the Crumbling Lands portal",
-      requirements: {}, // Might need a requirement for the specific Belfry key
+      requirements: {},
     },
   },
   {
@@ -83,7 +83,8 @@ export const farumAzulaEdges: EdgeData[] = [
       requirements: {
         requiredGlitch: {
           glitch: Glitch.WRONGWARP,
-          description: "",
+          description:
+            "Warp to the Roundtable Hold and Alt+F4 immediately before the loading bar finishes loading",
         },
       },
     },
@@ -104,7 +105,8 @@ export const farumAzulaEdges: EdgeData[] = [
       requirements: {
         requiredGlitch: {
           glitch: Glitch.ZIP,
-          description: "",
+          description:
+            "Past the Dragon Temple Site of Grace, zip across the large gap between where you pick up a Stonesword Key and the Great Bridge",
         },
       },
     },
@@ -151,7 +153,8 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
       requirements: {
         requiredGlitch: {
           glitch: Glitch.WRONGWARP,
-          description: "",
+          description:
+            "Warp to the Roundtable Hold and Alt+F4 immediately before the loading bar finishes loading",
         },
       },
     },
@@ -164,7 +167,8 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
       requirements: {
         requiredGlitch: {
           glitch: Glitch.ZIP,
-          description: "",
+          description:
+            "The setup for this zip is a little complicated, so watching a YouTube video is advised",
         },
       },
     },
@@ -205,7 +209,8 @@ export const snowfieldHaligtreeEdges: EdgeData[] = [
     from: Location.CONSECRATED_SNOWFIELD_ORDINA_LITURGICAL_TOWN,
     to: Location.MIQUELLAS_HALIGTREE,
     metadata: {
-      description: "Complete the evergaol seal puzzle to access the portal",
+      description:
+        "Complete the Evergaol seal puzzle to access the portal. The Sentry's Torch can be used to see hidden enemies",
       requirements: {},
     },
   },

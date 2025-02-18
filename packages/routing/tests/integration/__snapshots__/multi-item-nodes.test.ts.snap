@@ -38,7 +38,7 @@ exports[`multi-location items > Finds the fastest way to a Somber Smithing Stone
     {
       "from": "LIURNIA",
       "metadata": {
-        "description": "Access via Grand Lift of Dectus",
+        "description": "Access Altus Plateau via Grand Lift of Dectus",
         "requirements": {
           "requiredItems": [
             "DECTUS_MEDALLION",
@@ -64,7 +64,6 @@ exports[`multi-location items > Finds the fastest way to a Somber Smithing Stone
     {
       "from": "MT_GELMIR_VOLCANO_MANOR",
       "metadata": {
-        "description": "Area after Temple of Eiglay",
         "requirements": {
           "requiredBosses": [
             "GODSKIN_NOBLE",

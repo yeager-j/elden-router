@@ -12,7 +12,7 @@ export const altusPlateauEdges: EdgeData[] = [
     from: Location.LIURNIA,
     to: Location.ALTUS_PLATEAU,
     metadata: {
-      description: "Access via Grand Lift of Dectus",
+      description: "Access Altus Plateau via Grand Lift of Dectus",
       requirements: {
         requiredItems: [ProgressionItem.DECTUS_MEDALLION],
       },
@@ -22,7 +22,8 @@ export const altusPlateauEdges: EdgeData[] = [
     from: Location.LIURNIA_RUIN_STREWN_PRECIPICE,
     to: Location.ALTUS_PLATEAU,
     metadata: {
-      description: "Alternative path through Ruin-Strewn Precipice",
+      description:
+        "Alternative path to the Altus Plateau through Ruin-Strewn Precipice",
       requirements: {
         requiredBosses: [Enemy.MAGMA_WYRM_MAKAR],
       },
@@ -126,7 +127,8 @@ export const altusPlateauEdges: EdgeData[] = [
     to: Location.MT_GELMIR_VOLCANO_MANOR_INQUISITION_CHAMBER,
     directed: true,
     metadata: {
-      description: "Abducted by the Abductor Virgin in Raya Lucaria",
+      description:
+        "Abducted by the Abductor Virgin at the bottom of the water wheel in Raya Lucaria",
       requirements: {},
     },
   },
@@ -159,7 +161,6 @@ export const altusPlateauEdges: EdgeData[] = [
     from: Location.MT_GELMIR_VOLCANO_MANOR,
     to: Location.MT_GELMIR_VOLCANO_MANOR_POST_EIGLAY,
     metadata: {
-      description: "Area after Temple of Eiglay",
       requirements: {
         requiredBosses: [Enemy.GODSKIN_NOBLE],
       },
@@ -240,7 +241,7 @@ export const altusPlateauEdges: EdgeData[] = [
     directed: true,
     metadata: {
       requirements: {
-        requiredBosses: [Enemy.MOHG_THE_OMEN],
+        requiredBosses: [Enemy.MOHG_THE_OMEN, Enemy.MORGOTT_THE_OMEN_KING],
       },
     },
   },
@@ -277,7 +278,7 @@ export const altusPlateauEdges: EdgeData[] = [
       requirements: {
         requiredGlitch: {
           glitch: Glitch.ZIP,
-          description: "",
+          description: "Zip towards the Leyndell Colosseum and backtrack",
         },
         requiredDisabledFlags: [Flag.LEYNDELL_CAPITAL_ASHEN],
       },
@@ -289,7 +290,7 @@ export const altusPlateauEdges: EdgeData[] = [
     from: Location.ALTUS_PLATEAU_LEYNDELL_OUTSKIRTS,
     to: Location.LEYNDELL_ASHEN_CAPITAL,
     metadata: {
-      description: "Capital turns to ash after defeating Maliketh",
+      description: "Leyndell turns to ash after defeating Maliketh",
       requirements: {
         requiredEnabledFlags: [Flag.LEYNDELL_CAPITAL_ASHEN],
       },

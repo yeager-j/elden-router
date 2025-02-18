@@ -10,6 +10,8 @@ export const deeprootEdges: EdgeData[] = [
     to: Location.DEEPROOT_DEPTHS,
     directed: true,
     metadata: {
+      description:
+        "Via a hidden path behind an illusory wall opposite the Site of Grace",
       requirements: {},
     },
   },

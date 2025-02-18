@@ -34,6 +34,7 @@ export const ainselRiverEdges: EdgeData[] = [
     to: Location.AINSEL_RIVER_MAIN,
     directed: true,
     metadata: {
+      description: "Use the teleporter atop Renna's Rise",
       requirements: {},
     },
   },
@@ -42,10 +43,12 @@ export const ainselRiverEdges: EdgeData[] = [
     to: Location.AINSEL_RIVER_MAIN,
     directed: true,
     metadata: {
+      description: "Use the teleporter atop Renna's Rise",
       requirements: {
         requiredGlitch: {
           glitch: Glitch.ZIP,
-          description: "",
+          description:
+            "Zip from the top of Ranni's Rise across to Renna's Rise",
         },
       },
     },
@@ -76,7 +79,8 @@ export const ainselRiverEdges: EdgeData[] = [
     to: Location.LIURNIA_MOONLIGHT_ALTAR,
     directed: true,
     metadata: {
-      description: "Access via defeating Astel and using the coffin",
+      description:
+        "Defeat Astel, Naturalborn of the Void after obtaining the Dark Moon Ring",
       requirements: {
         requiredBosses: [Enemy.ASTEL_NATURALBORN_OF_THE_VOID],
       },

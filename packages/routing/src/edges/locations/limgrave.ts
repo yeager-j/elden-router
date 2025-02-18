@@ -18,7 +18,6 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE,
     to: Location.LIMGRAVE_STORMVEIL_CASTLE,
     metadata: {
-      description: "Enter Stormveil Castle through the main gate",
       requirements: {
         requiredBosses: [Enemy.MARGIT_THE_FELL_OMEN],
       },
@@ -37,7 +36,6 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE_STORMVEIL_CASTLE,
     to: Location.LIMGRAVE_STORMVEIL_CASTLE_THRONE_ROOM,
     metadata: {
-      description: "Access throne room after navigating castle",
       requirements: {
         requiredBosses: [Enemy.GODRICK_THE_GRAFTED],
       },
@@ -47,7 +45,9 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE_STORMVEIL_CASTLE,
     to: Location.LIMGRAVE_DIVINE_TOWER,
     metadata: {
-      requirements: {},
+      requirements: {
+        requiredBosses: [Enemy.GODRICK_THE_GRAFTED],
+      },
     },
   },
   {
@@ -133,7 +133,6 @@ export const limgraveEdges: EdgeData[] = [
     from: Location.LIMGRAVE_WAYPOINT_RUINS,
     to: Location.LIMGRAVE_WAYPOINT_RUINS_SELLEN_ROOM,
     metadata: {
-      description: "Access Sellen's underground study",
       requirements: {
         requiredBosses: [Enemy.MAD_PUMPKIN_HEAD],
       },

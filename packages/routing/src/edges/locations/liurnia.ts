@@ -76,10 +76,12 @@ export const liurniaEdges: EdgeData[] = [
     from: Location.LIURNIA_CARIA_MANOR,
     to: Location.LIURNIA_THREE_SISTERS,
     metadata: {
+      description: "Access through Caria Manor's upper level",
       requirements: {
         requiredGlitch: {
           glitch: Glitch.ZIP,
-          description: "",
+          description:
+            "In the grassy area before the Troll Knight, stand on the wooden platform and zip towards the Three Sisters",
         },
       },
     },
@@ -190,7 +192,8 @@ export const liurniaEdges: EdgeData[] = [
       requirements: {
         requiredGlitch: {
           glitch: Glitch.ZIP,
-          description: "",
+          description:
+            "Zipping into the rocks near the Converted Tower can ricochet you upwards towards the Moonlight Altar",
         },
       },
     },
